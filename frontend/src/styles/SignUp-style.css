@@ -1,0 +1,86 @@
+.page__signup {
+  min-height: 100vh;
+  background-color: rgb(223, 223, 223);
+  padding-top: 5%;
+}
+.form__signup {
+  margin: 0 10%;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 5%;
+  padding-top: 3%;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0 0 15px rgb(136, 136, 136);
+}
+.form__title {
+  font-size: 25px;
+  width: max-content;
+  margin: auto;
+  background: linear-gradient(90deg, rgb(231, 3, 155), rgb(124, 18, 98));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.form__signup > input {
+  padding: 5px;
+  border: 0;
+  border-bottom: 1px solid gray;
+}
+.form__signup > input:focus {
+  outline: none;
+  border-bottom: 2px solid rgb(141, 20, 111);
+}
+.form__signup > label {
+  color: rgb(100, 100, 100);
+  font-weight: bold;
+}
+.Check_package {
+  display: flex;
+  justify-content: space-between;
+}
+.Check_package > p {
+  text-align: center;
+}
+.Check__case {
+  border-radius: 50px;
+  background-color: rgb(255, 234, 234);
+  padding: 1% 5%;
+}
+.form__submit {
+  width: 20%;
+  margin: auto;
+  margin-top: 10px;
+  padding: 10px 0;
+  border: 0;
+  background-image: linear-gradient(45deg, rgb(253, 0, 169), rgb(124, 18, 98));
+  border-radius: 50px;
+  color: rgb(255, 255, 255);
+}
+.errorMessage {
+  margin: 2% 0;
+  padding: 0.5% 2%;
+  border: 1px solid rgb(180, 42, 42);
+  background-color: rgb(245, 206, 206);
+  border-radius: 5px;
+  color: rgb(124, 0, 0);
+}
+
+@media screen and (max-width: 550px) {
+  .Check_package {
+    flex-direction: column;
+    padding: 0 10%;
+  }
+  .Check_package > p {
+    margin: 5px 0;
+    text-align: center;
+  }
+  .form__title {
+    font-size: 15px;
+  }
+  .form__submit {
+    margin-top: 10px;
+    width: 40%;
+  }
+}
