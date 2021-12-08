@@ -7,10 +7,12 @@ function SignIn() {
   const [errorMessage, setErrorMessage] = useState("");
 
   function checkAndSignin() {
-    console.log(UserData);
     axios
       .post("/api/users/signIn", UserData)
-      .then((res) => {})
+      .then((res) => {
+        console.log(res.data);
+        alert(res.data);
+      })
       .catch((error) => {
         console.log(error);
       });
@@ -25,7 +27,7 @@ function SignIn() {
           checkAndSignin();
         }}
       >
-        <h3 className="form__title"> Sign Up for ANYTHING</h3>
+        <h3 className="form__title"> Sign In for ANYTHING</h3>
         {errorMessage !== "" ? (
           <div className="errorMessage">{errorMessage}</div>
         ) : null}
@@ -41,7 +43,6 @@ function SignIn() {
         />
         <br />
 
-              
         <label>Password </label>
         <input
           type="password"
@@ -54,7 +55,7 @@ function SignIn() {
 
         <button className="form__submit" type="submit">
           {" "}
-          SIGN UP
+          SIGN IN
         </button>
       </form>
     </div>
