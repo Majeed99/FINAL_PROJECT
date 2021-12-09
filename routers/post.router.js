@@ -6,7 +6,7 @@ router.get("/getPosts/:id", async (req, res) => {
   // console.log(req.params.id);
   const u = await users.findById(req.params.id);
   const posts = u.posts;
-  console.log(posts);
+  // console.log(posts);
   res.json(posts);
   // res.json(u.posts);
 });

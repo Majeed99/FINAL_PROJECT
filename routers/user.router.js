@@ -26,15 +26,23 @@ router.post("/", async (req, res) => {
       if (err) res.send("Email is used");
     });
 });
+
 router.post("/signIn", async (req, res) => {
   const { email, password } = req.body;
   let u = await users.findOne({ email: email }).lean();
   if (u == null) res.send("invalid email/password");
   if (await bcrypt.compare(password, u.password)) {
-    let Token = jwt.sign(u, JWT_SECRET);
+    console.log(u._id);
+    let Token = jwt.sign(u._id.toJSON(), JWT_SECRET);
     res.cookie("jwt", Token);
     res.json(Token);
   } else res.send("invalid email/password");
+});
+
+router.get("/signOut", async (req, res) => {
+  res.cookie("jwt", "", { maxAge: 1 });
+  // res.redirect("/");
+  res.end();
 });
 
 module.exports = router;

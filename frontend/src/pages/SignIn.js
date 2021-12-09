@@ -1,17 +1,26 @@
 import "../styles/SignUp-style.css";
 import axios from "axios";
-import { useState, useEffect } from "react";
+import userStatus from "../components/userStatus";
+import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+
 function SignIn() {
+  const navigate = useNavigate();
   const [UserData, setUserData] = useState({});
   const [errorMessage, setErrorMessage] = useState("");
+  const { auth, setAuth } = useContext(userStatus);
 
   function checkAndSignin() {
     axios
       .post("/api/users/signIn", UserData)
       .then((res) => {
         console.log(res.data);
-        alert(res.data);
+        if (res.data === "invalid email/password") {
+          setErrorMessage(res.data);
+          return;
+        }
+        setAuth(true);
+        navigate("/timeLine");
       })
       .catch((error) => {
         console.log(error);
