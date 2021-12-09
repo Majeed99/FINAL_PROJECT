@@ -1,16 +1,18 @@
 .App {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  min-height: calc(100vh - 70px);
   width: 100%;
   position: absolute;
-  padding-bottom: 55px;
+  padding-bottom: 70px;
+  background-color: rgb(223, 223, 223);
 }
 @media screen and (min-width: 1050px) {
   .App {
     display: flex;
     flex-direction: row;
     padding: 0;
+    min-height: 100vh;
   }
   .navBar__cover {
     width: 10%;

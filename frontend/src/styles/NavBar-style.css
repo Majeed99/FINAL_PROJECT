@@ -5,15 +5,15 @@
   position: fixed;
   bottom: 0;
   width: 100%;
-  height: 55px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  height: 70px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
   overflow-x: auto;
-
   background-image: linear-gradient(
     to bottom,
     rgb(146, 0, 214),
     rgb(103, 0, 151)
   );
+  border-radius: 50px 50px 0 0;
 }
 .navBar a {
   display: flex;
@@ -25,15 +25,40 @@
   height: -webkit-fill-available;
   text-decoration: none;
   font-size: 15px;
-}
-.navBar a:hover {
-  background-color: rgba(0, 0, 0, 0.171);
+  transition: 2s;
 }
 .Link__Icons {
-  font-size: 25px;
+  font-size: 30px;
 }
 .Link__Icons path {
   stroke: white !important;
+}
+.navBar .active {
+  /* background-color: rgba(192, 0, 0, 0.808); */
+}
+.navBar .active .Link__Icons {
+  transition: 0.5s;
+  padding: 15px;
+  position: fixed;
+  top: calc(100vh - 100px);
+  z-index: 1;
+  border-radius: 50px;
+  background-color: rgb(167, 167, 167);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+.navBar .navBar__text {
+  visibility: hidden;
+  height: 0px;
+  opacity: 0;
+  margin: 0px;
+  font-weight: bold;
+}
+.navBar .active .navBar__text {
+  height: max-content;
+  visibility: visible;
+  transition: 2s;
+  opacity: 1;
+  padding-top: 25px;
 }
 
 @media screen and (min-width: 1050px) {
@@ -46,20 +71,47 @@
     left: 0;
     width: 10%;
     height: 100vh;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
     overflow-x: auto;
     background-image: linear-gradient(
       to bottom,
       rgb(146, 0, 214),
       rgb(103, 0, 151)
     );
+    border-radius: 0 50px 50px 0;
   }
   .navBar a {
-    flex-direction: row;
+    /* flex-direction: row; */
     font-size: 15px;
   }
   .Link__Icons {
     font-size: 25px;
     padding-right: 10px;
+  }
+  .navBar .active .Link__Icons {
+    transition: 0.5s;
+    padding: 15px;
+    position: fixed;
+    top: auto !important;
+    left: calc(10% - 27px);
+    z-index: 1;
+    border-radius: 50px;
+    background-color: rgb(167, 167, 167);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  }
+  .navBar .navBar__text {
+    visibility: hidden;
+    height: 0px;
+    opacity: 0;
+    margin: 0px;
+    font-weight: bold;
+    padding-right: 15px;
+  }
+  .navBar .active .navBar__text {
+    height: max-content;
+    visibility: visible;
+    transition: 2s;
+    opacity: 1;
+    padding-top: 0px;
   }
 }

@@ -1,7 +1,10 @@
 .page__signup {
-  min-height: 100vh;
+  min-height: calc(100vh - 70px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   background-color: rgb(223, 223, 223);
-  padding-top: 5%;
+  width: 100%;
 }
 .form__signup {
   margin: 0 10%;
@@ -82,5 +85,10 @@
   .form__submit {
     margin-top: 10px;
     width: 40%;
+  }
+}
+@media screen and (min-width: 1050px) {
+  .page__signup {
+    min-height: 100vh;
   }
 }

@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../styles/NavBar-style.css";
 import userStatus from "../components/userStatus";
 import { useContext } from "react";
@@ -11,6 +11,7 @@ import { MdTimeline } from "react-icons/md";
 import { GrLogout } from "react-icons/gr";
 
 function NavBar() {
+  const navigate = useNavigate();
   const { auth, setAuth } = useContext(userStatus);
   const token = document.cookie.split("jwt=")[1];
   let userId = null;
@@ -20,59 +21,97 @@ function NavBar() {
     setAuth(true);
   } else setAuth(false);
 
-  // function getCookie(cname) {
-  //   var arrayb = document.cookie.split(";");
-  //   for (const item of arrayb) {
-  //     if (item.startsWith("jwt=")) {
-  //       return item.substr(4);
-  //     }
-  //   }
-  // }
-  // let token = getCookie("jwt");
-  // console.log(token);
-  // setAuth(token === undefined ? false : true);
+  //FUNCTION FOR ACTIVE LINK
+  function activeClass(clicked) {
+    let elements = document.getElementsByTagName("a");
+
+    for (const el of elements) {
+      el.classList.remove("active");
+    }
+
+    if (clicked.target.tagName === "svg") {
+      clicked.target.parentElement.className = "active";
+    } else if (clicked.target.tagName === "path") {
+      clicked.target.parentElement.parentElement.className = "active";
+    } else if (clicked.target.tagName === "P") {
+      clicked.target.parentElement.className = "active";
+    } else clicked.target.className = "active";
+  }
 
   return (
     <div className="navBar">
-      {/* PAGER FOR NOT REGISTER */}
+      {/* PAGES FOR NOT REGISTER */}
       {!auth ? (
-        <Link to="/">
+        <Link
+          to="/"
+          className="navBar__links active"
+          onClick={(e) => {
+            e.preventDefault();
+            activeClass(e);
+            navigate("/");
+          }}
+        >
           <AiFillHome className="Link__Icons" />
-          Home
+          <p className="navBar__text">Home</p>
         </Link>
       ) : null}
 
       {!auth ? (
-        <Link to="/signup">
+        <Link
+          to="/signup"
+          className="navBar__links"
+          onClick={(e) => {
+            e.preventDefault();
+            activeClass(e);
+            navigate("/signup");
+          }}
+        >
           <HiUserAdd className="Link__Icons" />
-          SignUp
-        </Link>
-      ) : null}
-      {!auth ? (
-        <Link to="/signin">
-          <BiLogIn className="Link__Icons" />
-          SignIn
+          <p className="navBar__text">SignUp</p>
         </Link>
       ) : null}
 
-      {/* PAGER FOR NOT REGISTER */}
+      {!auth ? (
+        <Link
+          to="/signin"
+          className="navBar__links"
+          onClick={(e) => {
+            e.preventDefault();
+            activeClass(e);
+            navigate("/signin");
+          }}
+        >
+          <BiLogIn className="Link__Icons" />
+          <p className="navBar__text">SignIn</p>
+        </Link>
+      ) : null}
+
+      {/* PAGES FOR REGISTER */}
       {auth ? (
-        <Link to="/timeline">
+        <Link
+          to="/timeline"
+          className="navBar__links"
+          onClick={(e) => {
+            e.preventDefault();
+            activeClass(e);
+          }}
+        >
           <MdTimeline className="Link__Icons" />
-          TimeLine
+          <p className="navBar__text active"> TimeLine</p>
         </Link>
       ) : null}
 
       {auth ? (
         <Link
           to="/"
+          className="navBar__links"
           onClick={async () => {
             await axios.get("/api/users/signOut");
             setAuth(false);
           }}
         >
           <GrLogout className="Link__Icons" fill="white" />
-          Sign Out
+          <p className="navBar__text"> Sign Out</p>
         </Link>
       ) : null}
     </div>
