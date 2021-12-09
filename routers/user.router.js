@@ -2,7 +2,7 @@ const router = require("express").Router();
 let users = require("../models/user.model");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
-const JWT_SECRT = "KDSL546H5sdfH54656G%#%$rR54756TE$%#%4%^$$235G4FDG6854";
+const JWT_SECRET = "KDSL546H5sdfH54656G%#%$rR54756TE$%#%4%^$$235G4FDG6854";
 
 router.get("/", (req, res) => {
   users
@@ -31,7 +31,7 @@ router.post("/signIn", async (req, res) => {
   let u = await users.findOne({ email: email }).lean();
   if (u == null) res.send("invalid email/password");
   if (await bcrypt.compare(password, u.password)) {
-    let Token = jwt.sign(u, "test secret");
+    let Token = jwt.sign(u, JWT_SECRET);
     res.cookie("jwt", Token);
     res.json(Token);
   } else res.send("invalid email/password");

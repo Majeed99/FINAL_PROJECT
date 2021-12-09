@@ -7,7 +7,7 @@ app.use(cors());
 app.use(express.json());
 // ROUTER REQUIRE
 const usersRouter = require("./routers/user.router");
-
+const postRouter = require("./routers/post.router");
 // CONNECTION TO MONGOOSE DB
 mongoose.connect(
   "mongodb+srv://admin:adminxx@cluster0.9badp.mongodb.net/finalProject?retryWrites=true&w=majority",
@@ -19,5 +19,6 @@ connection.once("open", () => {
 });
 // USE ROUTERS WITH PATH
 app.use("/api/users", usersRouter);
+app.use("/api/posts", postRouter);
 
 app.listen(port);
