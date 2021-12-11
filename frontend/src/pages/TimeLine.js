@@ -1,11 +1,19 @@
 import "../styles/TimeLine-style.css";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import useGeoLocation from "../components/useGeoLocation";
+import PostCard from "../components/PostCard";
+import UploadImage from "../functions/UploadImage";
+import Loading from "../components/Loading";
 function TimeLine() {
   const [Posts, setPosts] = useState([]);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [Image, setImage] = useState();
   const token = document.cookie.split("=")[1];
   const userId = atob(token.split(".")[1]);
-//   console.log(userId);
+  const location = useGeoLocation();
+  // console.log(userId);
+
   useEffect(() => {
     axios
       .get("api/posts/getPosts/" + userId)
@@ -17,12 +25,29 @@ function TimeLine() {
       });
   }, []);
 
-  function addNewPost() {
+  useEffect(() => {
+    // console.log(location);
+    if (location.loaded) {
+      if (location.error)
+        setErrorMessage("Please allow permission of location");
+      else {
+        setErrorMessage("");
+        console.log(location.coordinates);
+      }
+    }
+  }, [location]);
+
+  async function addNewPost(e) {
+    const imageUrl = await UploadImage(Image);
+    console.log(imageUrl);
     console.log("clicked!!");
   }
 
   return (
-    <div>
+    <div className="page">
+      {errorMessage !== "" ? (
+        <div className="errorMessage">{errorMessage}</div>
+      ) : null}
       <form
         onSubmit={(e) => {
           e.preventDefault();
@@ -30,18 +55,23 @@ function TimeLine() {
         }}
       >
         <input type="text" placeholder="What are you up to?"></input>
+        <input
+          type="file"
+          accept="image/jpeg, image/png"
+          placeholder="upload you image"
+          onChange={(e) => {
+            setImage(e.target.files[0]);
+          }}
+        />
         <button type="submit"> Post </button>
       </form>
 
-      {/* DISPLAY POSTS TIMELINE*/}
-      {Posts.map((el) => {
-        return (
-          <div>
-            <p>{el.location}</p>
-            <p>{el.text}</p>
-          </div>
-        );
-      })}
+      <div className="page">
+        {/* DISPLAY POSTS TIMELINE*/}
+        {Posts.map((el) => {
+          return <PostCard el={el} />;
+        })}
+      </div>
     </div>
   );
 }

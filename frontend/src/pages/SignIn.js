@@ -28,7 +28,7 @@ function SignIn() {
   }
 
   return (
-    <div className="page__signup">
+    <div className="page__signup ">
       <form
         className="form__signup"
         onSubmit={(e) => {

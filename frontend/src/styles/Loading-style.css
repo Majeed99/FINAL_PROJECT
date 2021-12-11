@@ -1,0 +1,130 @@
+.loading {
+  height: calc(100vh - 70px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  /* background-color: rgb(0, 78, 52); */
+}
+.TEXT__LOADING {
+  margin-top: 5vh;
+  margin-left: 2%;
+  text-align: center;
+  font-weight: bold;
+  color: rgba(44, 0, 65, 0.89);
+  font-size: 20px;
+  white-space: nowrap;
+  overflow: hidden;
+  animation: type 3s infinite ease-in;
+}
+.span,
+.span_large {
+  /* float: right; */
+  width: 100px;
+  background-color: rgba(255, 255, 255, 0);
+  height: 100px;
+  vertical-align: middle;
+  border-radius: 1px;
+}
+.span:last-child {
+  margin-right: 0px;
+}
+/*Location indicator */
+.location_indicator {
+  margin: 30px auto;
+  position: relative;
+}
+
+.location_indicator:before,
+.location_indicator:after {
+  position: absolute;
+  content: "";
+}
+
+.location_indicator:before {
+  width: 40px;
+  height: 40px;
+  border-radius: 100% 100% 100% 0;
+  box-shadow: 0px 0px 0px 3px rgb(74, 0, 109);
+  -webkit-animation: mapping 1s linear infinite;
+  -moz-animation: mapping 1s linear infinite;
+  animation: mapping 2s linear infinite;
+  -webkit-transform: rotate(-46deg);
+  -moz-transform: rotate(-46deg);
+  transform: rotate(-46deg);
+  left: 7vh;
+}
+
+.location_indicator:after {
+  width: 40px;
+  height: 15px;
+  border-radius: 100%;
+  left: 7vh;
+  background-color: rgba(44, 0, 65, 0.74);
+  top: 10vh;
+  z-index: 0;
+  animation: tt 2s linear infinite;
+}
+
+@-webkit-keyframes mapping {
+  0% {
+    top: 0;
+    box-shadow: 0px 0px 0px 3px rgba(74, 0, 109, 0);
+  }
+  50% {
+    top: -5px;
+  }
+  100% {
+    top: 0;
+    box-shadow: 0px 0px 0px 3px rgb(74, 0, 109);
+  }
+}
+@keyframes mapping {
+  0% {
+    top: 0;
+    box-shadow: 0px 0px 0px 3px rgba(74, 0, 109, 0);
+  }
+  50% {
+    top: -5px;
+  }
+  100% {
+    top: 0;
+    box-shadow: 0px 0px 0px 3px rgb(74, 0, 109);
+  }
+}
+@keyframes tt {
+  0% {
+    top: 10vh;
+  }
+  50% {
+    top: calc(10vh - 5px);
+  }
+  100% {
+    top: 10vh;
+  }
+}
+@-moz-keyframes mapping {
+  0% {
+    top: 0;
+    box-shadow: 0px 0px 0px 3px rgba(74, 0, 109, 0);
+  }
+  50% {
+    top: -5px;
+    box-shadow: 0px 0px 0px 3px;
+  }
+  100% {
+    top: 0;
+    box-shadow: 0px 0px 0px 3px rgba(74, 0, 109, 0);
+  }
+}
+
+@keyframes type {
+  from {
+    width: 0vw;
+  }
+  to {
+    /* min-width: max-content; */
+    width: 50vw;
+  }
+}
