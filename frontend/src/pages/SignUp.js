@@ -69,7 +69,7 @@ function SignUp() {
           checkAndSubmit();
         }}
       >
-        <h3 className="form__title"> Sign Up for ANYTHING</h3>
+        <h3 className="form__title"> Sign Up </h3>
         {errorMessage !== "" ? (
           <div className="errorMessage">{errorMessage}</div>
         ) : null}

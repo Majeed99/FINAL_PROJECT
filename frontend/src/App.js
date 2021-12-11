@@ -9,8 +9,15 @@ import NavBar from "./components/NavBar";
 import TimeLine from "./pages/TimeLine";
 import Profile from "./pages/Profile";
 import Friends from "./pages/Friends";
+import AOS from "aos";
+import { useEffect } from "react";
+import "aos/dist/aos.css";
 function App() {
   let [auth, setAuth] = useState(false);
+  useEffect(() => {
+    AOS.init();
+    AOS.refresh();
+  }, []);
   return (
     <userStatus.Provider value={{ auth, setAuth }}>
       <div className="App">

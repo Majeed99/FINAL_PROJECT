@@ -30,13 +30,14 @@ function SignIn() {
   return (
     <div className="page__signup ">
       <form
+        
         className="form__signup"
         onSubmit={(e) => {
           e.preventDefault();
           checkAndSignin();
         }}
       >
-        <h3 className="form__title"> Sign In for ANYTHING</h3>
+        <h3 className="form__title"> Sign In </h3>
         {errorMessage !== "" ? (
           <div className="errorMessage">{errorMessage}</div>
         ) : null}
