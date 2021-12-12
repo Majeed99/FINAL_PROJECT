@@ -90,6 +90,7 @@ function EditProfile() {
         />
         <br />
         <label>Avatar</label>
+        <img className="avatar__edit" src={UserData.avatar} alt="" />
         <input
           type="file"
           onChange={async (e) => {
@@ -100,6 +101,7 @@ function EditProfile() {
         />
         <br />
         <label>Header</label>
+        <img className="header__edit" src={UserData.header} alt="" />
         <input
           type="file"
           onChange={async (e) => {
@@ -110,7 +112,7 @@ function EditProfile() {
         />
         <br />
         <button className="edit_profile_button" type="submit">
-          Submit
+          Update
         </button>
       </form>
     </div>

@@ -10,6 +10,7 @@ import { BiLogIn } from "react-icons/bi";
 import { MdTimeline } from "react-icons/md";
 import { GrLogout } from "react-icons/gr";
 import { FaUser } from "react-icons/fa";
+import { BiSearchAlt } from "react-icons/bi";
 
 function NavBar() {
   const navigate = useNavigate();
@@ -111,6 +112,20 @@ function NavBar() {
         >
           <FaUser className="Link__Icons" />
           <p className="navBar__text "> Profile</p>
+        </Link>
+      ) : null}
+      {auth ? (
+        <Link
+          to="/Search"
+          className="navBar__links"
+          onClick={(e) => {
+            e.preventDefault();
+            activeClass(e);
+            navigate("/Search");
+          }}
+        >
+          <BiSearchAlt className="Link__Icons" />
+          <p className="navBar__text "> Search</p>
         </Link>
       ) : null}
 
