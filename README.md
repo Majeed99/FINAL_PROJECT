@@ -17,8 +17,8 @@
 - ***Search Of User***  As a user I can search of any user by his userName.
 - ***Request New Friend***  As a user I can make request for any of the users.
 - ***Accept Or Reject Request*** As a user I can accept or reject any user's request.
-- **View Friends Posts ** As a user I want to see the friends posts.
-- **Comment On Posts** As a user I can add comment of any posts.
+- ***View Friends Posts *** As a user I want to see the friends posts.
+- ***Comment On Posts*** As a user I can add comment of any posts.
 
 
 
