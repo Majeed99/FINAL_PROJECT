@@ -71,6 +71,17 @@
   color: rgb(124, 0, 0);
 }
 
+.edit_profile_button {
+  cursor: pointer;
+  width: 20%;
+  margin: auto;
+  margin-top: 10px;
+  padding: 10px 0;
+  border: 0;
+  background-image: linear-gradient(45deg, rgb(253, 0, 169), rgb(124, 18, 98));
+  border-radius: 50px;
+  color: rgb(255, 255, 255);
+}
 @media screen and (max-width: 550px) {
   .Check_package {
     flex-direction: column;

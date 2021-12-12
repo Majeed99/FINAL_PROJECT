@@ -37,7 +37,7 @@ function TimeLine() {
     }
   }, [location]);
 
-  async function addNewPost(e) {
+  async function addNewPost() {
     const imageUrl = await UploadImage(Image);
     console.log(imageUrl);
     console.log("clicked!!");

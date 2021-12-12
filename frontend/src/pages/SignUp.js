@@ -48,12 +48,17 @@ function SignUp() {
       return;
     }
     axios
-      .post("/api/users/", UserData)
+      .post("api/users/", UserData)
       .then((res) => {
         console.log(res.data);
         if (res.data === "done") navigate("/signin");
-        else if (res.data === "Email is used") setErrorMessage("Email is used");
-        return;
+        else if (res.data === "userName is already used") {
+          setErrorMessage("userName is already used");
+          return;
+        } else if (res.data === "E-mail is already used") {
+          setErrorMessage("E-mail is already used");
+          return;
+        }
       })
       .catch((error) => {
         console.log(error);
@@ -78,6 +83,16 @@ function SignUp() {
           type="text"
           onChange={(e) => {
             UserData.name = e.target.value;
+            setUserData({ ...UserData });
+          }}
+          required
+        />
+        <br />
+        <label>UserName </label>
+        <input
+          type="text"
+          onChange={(e) => {
+            UserData.userName = e.target.value;
             setUserData({ ...UserData });
           }}
           required

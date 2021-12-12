@@ -119,7 +119,14 @@ function NavBar() {
           to="/"
           className="navBar__links"
           onClick={async () => {
-            await axios.get("/api/users/signOut");
+            await axios
+              .get("api/users/signOut")
+              .then((res) => {
+                console.log(res);
+              })
+              .catch((err) => {
+                console.log(err);
+              });
             setAuth(false);
           }}
         >

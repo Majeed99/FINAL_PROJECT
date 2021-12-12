@@ -16,6 +16,7 @@ async function UploadImage(pic) {
       //   console.log(res.data.url);
       imageURL = res.data.url;
     });
+
   return imageURL;
 }
 

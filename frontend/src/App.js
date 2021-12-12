@@ -9,6 +9,7 @@ import NavBar from "./components/NavBar";
 import TimeLine from "./pages/TimeLine";
 import Profile from "./pages/Profile";
 import Friends from "./pages/Friends";
+import EditProfile from "./pages/EditProfile";
 import AOS from "aos";
 import { useEffect } from "react";
 import "aos/dist/aos.css";
@@ -33,6 +34,7 @@ function App() {
               <Route exact path="/TimeLine" element={<TimeLine />} />
               <Route exact path="/Profile" element={<Profile />} />
               <Route exact path="/Friends" element={<Friends />} />
+              <Route exact path="/EditProfile" element={<EditProfile />} />
             </Routes>
           </div>
         </BrowserRouter>

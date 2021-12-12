@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 const postSchema = new Schema(
   {
     text: { type: String, required: false },
+    photo: { type: String, required: false },
     location: { type: String, required: true },
     locationId: { type: String, required: true },
     likes: { type: Number, default: 0 },
