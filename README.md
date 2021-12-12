@@ -1,10 +1,4 @@
-# e-commerce	
-
-
-
-# Quick Compo
-
-<img src="/Users/enriquecoscarelli/Downloads/minilogo.png" alt="minilogo" style="zoom:75%;" />
+# PlaceX	
 
 ## Description
 
@@ -17,14 +11,14 @@
 - **SignUp:** As a user I can sign up in the website so that I can start posting my location.
 - **SignIn:** As a user I can login to the website.
 - **Logout:** As a user I can logout from the website so no one else can use it.
-- ***Edit Profile*** As a user I can edit any of my profile info.
-- **Add Post** As a user I can add an post with my location with text or photo.
-- **Delete Post** As a user I can delete any of my posts.
-- ***Search Of User***  As a user I can search of any user by his userName.
-- ***Request New Friend***  As a user I can make request for any of the users.
-- ***Accept Or Reject Request*** As a user I can accept or reject any user's request.
-- **View Friends Posts ** As a user I want to see the friends posts.
-- **Comment On Posts** As a user I can add comment of any posts.
+- ***Edit Profile:*** As a user I can edit any of my profile info.
+- **Add Post:** As a user I can add an post with my location with text or photo.
+- **Delete Post:** As a user I can delete any of my posts.
+- ***Search Of User:***  As a user I can search of any user by his userName.
+- ***Request New Friend:***  As a user I can make request for any of the users.
+- ***Accept Or Reject Request:*** As a user I can accept or reject any user's request.
+- ***View Friends Posts:*** As a user I want to see the friends posts.
+- ***Comment On Posts:*** As a user I can add comment of any posts.
 
 
 
