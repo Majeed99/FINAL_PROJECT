@@ -12,6 +12,7 @@ import Friends from "./pages/Friends";
 import EditProfile from "./pages/EditProfile";
 import Search from "./pages/Search";
 import User from "./pages/User";
+import Notification from "./pages/Notification";
 import AOS from "aos";
 import { useEffect } from "react";
 import "aos/dist/aos.css";
@@ -39,6 +40,7 @@ function App() {
               <Route exact path="/EditProfile" element={<EditProfile />} />
               <Route exact path="/Search" element={<Search />} />
               <Route exact path="/User/:id" element={<User />} />
+              <Route exact path="/Notification" element={<Notification />} />
             </Routes>
           </div>
         </BrowserRouter>

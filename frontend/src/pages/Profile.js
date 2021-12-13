@@ -1,10 +1,12 @@
 import "../styles/Profile-style.css";
-import { Link } from "react-router-dom";
+import { Link ,useNavigate} from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Loading from "../components/Loading";
+import { IoIosNotifications } from "react-icons/io";
 
 function Profile() {
+  const navigate = useNavigate();
   const [UserData, setUserData] = useState({});
   const [loading, setLoading] = useState(true);
 
@@ -27,6 +29,12 @@ function Profile() {
       <div className="first">
         <img className="img__header" src={UserData.header} alt="header" />
         <img className="img__avatar" src={UserData.avatar} alt="header" />
+        <div className="requests" onClick={() => {
+        navigate("/notification");
+        }}>
+          <IoIosNotifications className="notification__icon" />
+          {UserData.requests.length}
+        </div>
         <div className="for__top">
           <b>{UserData.name}</b>
           <br />

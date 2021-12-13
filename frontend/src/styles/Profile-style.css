@@ -98,6 +98,30 @@
 .profile__bio {
   margin: 0.5em 0;
 }
+.notification__icon {
+  font-size: 20px;
+  transform: rotate(15deg);
+  fill: rgb(235, 113, 0);
+}
+.requests {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 30vh;
+  width: max-content;
+  left: 70vw;
+  padding: 5px;
+  border: 2px solid rgb(235, 113, 0);
+  background-color: rgba(235, 114, 0, 0.137);
+  font-weight: bold;
+  color: rgb(235, 113, 0);
+  border-radius: 500px;
+  width: 15vw;
+}
+.requests:hover {
+  cursor: pointer;
+}
 @media screen and (min-width: 1050px) {
   .img__header {
     width: 100%;
@@ -105,5 +129,8 @@
   }
   .first b {
     font-size: larger;
+  }
+  .requests {
+    top: 40vh;
   }
 }

@@ -145,7 +145,7 @@ function NavBar() {
             setAuth(false);
           }}
         >
-          <GrLogout className="Link__Icons" fill="white" />
+          <GrLogout className="Link__Icons" fill="red" />
           <p className="navBar__text"> Sign Out</p>
         </Link>
       ) : null}

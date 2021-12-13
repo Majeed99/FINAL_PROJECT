@@ -31,7 +31,7 @@
   font-size: 30px;
 }
 .Link__Icons path {
-  stroke: white !important;
+  stroke: rgb(196, 0, 0) !important;
 }
 .navBar .active {
   /* background-color: rgba(192, 0, 0, 0.808); */

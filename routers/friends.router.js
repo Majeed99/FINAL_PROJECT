@@ -19,6 +19,22 @@ router.post("/request", async (req, res) => {
   res.send("added");
 });
 
+router.get("/getAllRequest/:id", async (req, res) => {
+  const id = req.params.id;
+  const u = await users.findById(id);
+  const requestsIds = u.requests;
+
+  const usersData = await requestsIds.map(async (e) => {
+    const data = await users.findById(e);
+    const jsonData = await JSON.parse(JSON.stringify(data));
+    return jsonData;
+  });
+
+  Promise.all(usersData).then((data) => {
+    res.json(data);
+  });
+});
+
 router.delete("/cancel", async (req, res) => {
   const { userId, friendId } = req.body;
   const u = await users.findById(friendId);

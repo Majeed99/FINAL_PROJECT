@@ -1,0 +1,66 @@
+.display-flex {
+  display: flex;
+  align-items: center;
+}
+.display-flex p {
+  margin: 0.5em 0;
+}
+
+.user__names__req {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 5vw;
+  width: 60vw;
+}
+.control_req_btns {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.accept_btn {
+  border-radius: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1% 0;
+  border: 0;
+  width: 8vw;
+  height: 8vw;
+  background-color: green;
+}
+.reject_btn {
+  cursor: pointer;
+  border-radius: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1% 0 1% 5%;
+  border: 0;
+  width: 8vw;
+  height: 8vw;
+  background-color: rgb(190, 0, 0);
+  font-size: 20px;
+}
+
+@media screen and (min-width: 1050px) {
+  .user__names__req {
+    width: 50vw;
+  }
+  .friend__Card {
+    height: 50px;
+  }
+  .friend__Card img {
+    width: 50px;
+    height: 50px;
+  }
+  .accept_btn {
+    width: 40px;
+    height: 40px;
+  }
+  .reject_btn {
+    width: 40px;
+    height: 40px;
+  }
+}
