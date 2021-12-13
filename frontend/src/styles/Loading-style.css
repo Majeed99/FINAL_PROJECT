@@ -1,5 +1,6 @@
 .loading {
-  height: calc(100vh - 70px);
+  max-width: 100%;
+  height: calc(100vh - 130px);
   display: flex;
   flex-direction: column;
   justify-content: center;

@@ -28,6 +28,7 @@
   min-height: 100%;
   background-color: rgba(255, 255, 255, 0.397);
   padding: 0.6em;
+  font-weight: bold;
 }
 .search__input::placeholder {
   color: rgba(255, 255, 255, 0.705);
@@ -78,5 +79,10 @@
 }
 .user__names p {
   margin: 0.2em 0;
+  color: gray;
+}
+.not__found_users {
+  text-align: center;
+  font-weight: bold;
   color: gray;
 }

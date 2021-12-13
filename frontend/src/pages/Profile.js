@@ -15,7 +15,7 @@ function Profile() {
   async function fetchData() {
     const token = document.cookie.split("=")[1];
     const userId = atob(token.split(".")[1]);
-    const res = await axios.get("api/users/getUser/" + userId);
+    const res = await axios.get("/api/users/getUser/" + userId);
     const data = await res.data;
     await setUserData(data);
     setLoading(false);
