@@ -68,9 +68,9 @@ function TimeLine() {
 
       <div className="page">
         {/* DISPLAY POSTS TIMELINE*/}
-        {Posts.map((el) => {
+        {/*Posts.map((el) => {
           return <PostCard el={el} />;
-        })}
+        })*/}
       </div>
     </div>
   );

@@ -102,20 +102,6 @@ function NavBar() {
 
       {auth ? (
         <Link
-          to="/Profile"
-          className="navBar__links"
-          onClick={(e) => {
-            e.preventDefault();
-            activeClass(e);
-            navigate("/Profile");
-          }}
-        >
-          <FaUser className="Link__Icons" />
-          <p className="navBar__text "> Profile</p>
-        </Link>
-      ) : null}
-      {auth ? (
-        <Link
           to="/Search"
           className="navBar__links"
           onClick={(e) => {
@@ -126,6 +112,21 @@ function NavBar() {
         >
           <BiSearchAlt className="Link__Icons" />
           <p className="navBar__text "> Search</p>
+        </Link>
+      ) : null}
+
+      {auth ? (
+        <Link
+          to="/Profile"
+          className="navBar__links"
+          onClick={(e) => {
+            e.preventDefault();
+            activeClass(e);
+            navigate("/Profile");
+          }}
+        >
+          <FaUser className="Link__Icons" />
+          <p className="navBar__text "> Profile</p>
         </Link>
       ) : null}
 

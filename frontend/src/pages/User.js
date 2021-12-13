@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Loading from "../components/Loading";
 import { Link, useParams, useNavigate } from "react-router-dom";
+import PostCard from "../components/PostCard";
 import "../styles/User-style.css";
 
 function User() {
@@ -52,20 +53,36 @@ function User() {
       });
   }
 
+
+  async function unfriendRequest() {
+    const data = await { userId: userId, friendId: id };
+    axios
+      .delete("/api/friends/unfriend", { data: data })
+      .then((res) => {
+        fetchData();
+      })
+      .catch((err) => {
+        if (err) console.log(err);
+      });
+  }
+
+
+
   if (loading) return <Loading />;
   return (
     <div>
       <div className="first">
-        <img className="img__header" src={UserData.header} alt="header" />
-        <img className="img__avatar" src={UserData.avatar} alt="header" />
-        <div className="for__top">
-          <b>{UserData.name}</b>
-          <br />
-          <p className="userName">@{UserData.userName}</p>
-          <p className="profile__bio">{UserData.bio}</p>
-          <p className="profile__location">{UserData.location}</p>
-
-          <div className="">
+        <div className="text_center">
+          <img className="img__header" src={UserData.header} alt="header" />
+          <img className="img__avatar" src={UserData.avatar} alt="header" />
+          <div className="for__top">
+            <b>{UserData.name}</b>
+            <br />
+            <p className="userName">@{UserData.userName}</p>
+            <p className="profile__bio">{UserData.bio}</p>
+            <p className="profile__location">{UserData.location}</p>
+          </div>
+          <div className="top__btn">
             {relation === "" ? (
               <button
                 className="request__btn"
@@ -86,11 +103,32 @@ function User() {
               >
                 Pending
               </button>
+            ) : relation === "friends" ? (
+              <button
+                className="unfriend__btn"
+                onClick={(e) => {
+                  e.preventDefault();
+                  unfriendRequest();
+                }}
+              >
+                Unfriend
+              </button>
             ) : null}
           </div>
           <hr />
-          <div>You can't see there posts if you are not a friends</div>
         </div>
+
+        {relation == "friends" ? (
+          <div className="all_posts">
+            {UserData.posts.map((el) => {
+              return <PostCard el={el} user={UserData} />;
+            })}
+          </div>
+        ) : (
+          <div className="message__noPosts">
+            You can't see there posts if you are not a friends
+          </div>
+        )}
       </div>
     </div>
   );

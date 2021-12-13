@@ -35,7 +35,6 @@ router.get("/getAllRequest/:id", async (req, res) => {
   });
 });
 
-
 router.get("/getAllFriends/:id", async (req, res) => {
   const id = req.params.id;
   const u = await users.findById(id);
@@ -52,8 +51,6 @@ router.get("/getAllFriends/:id", async (req, res) => {
   });
 });
 
-
-
 router.delete("/cancel", async (req, res) => {
   const { userId, friendId } = req.body;
   const u = await users.findById(friendId);
@@ -63,6 +60,26 @@ router.delete("/cancel", async (req, res) => {
   });
   u.requests = newRequests;
   u.save();
+  res.send("deleted");
+});
+
+router.delete("/unfriend", async (req, res) => {
+  const { userId, friendId } = req.body;
+  const u = await users.findById(friendId);
+  const friends = u.friends;
+  const newFriends = friends.filter((e) => {
+    return e != userId;
+  });
+  u.friends = newFriends;
+  u.save();
+  // second user
+  const u2 = await users.findById(userId);
+  const friends2 = u2.friends;
+  const newFriends2 = friends2.filter((e) => {
+    return e != friendId;
+  });
+  u2.friends = newFriends2;
+  u2.save();
   res.send("deleted");
 });
 

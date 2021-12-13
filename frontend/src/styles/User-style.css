@@ -1,4 +1,5 @@
 .request__btn {
+  margin-left: 50%;
   border: 0;
   border-radius: 500px;
   background-image: linear-gradient(
@@ -8,19 +9,50 @@
   );
   padding: 1% 3%;
   color: white;
-}
-.request__btn:hover {
   cursor: pointer;
 }
 
 .pending__btn {
+  margin-left: 50%;
   border: 2px solid rgb(0, 60, 151);
   border-radius: 500px;
   background-color: transparent;
   padding: 0.8% 3%;
   color: rgb(0, 60, 151);
   font-weight: 600;
-}
-.pending__btn:hover {
   cursor: pointer;
+}
+
+.unfriend__btn {
+  margin-left: 50%;
+  border: 0;
+  border-radius: 500px;
+  background-image: linear-gradient(to bottom, rgb(214, 0, 0), rgb(151, 0, 0));
+  padding: 1% 3%;
+  color: white;
+  cursor: pointer;
+}
+.all_posts {
+  padding: 1%;
+}
+.message__noPosts {
+  width: max-content;
+  max-width: 100%;
+  margin: auto;
+  color: rgb(95, 95, 95);
+  padding: 3% 0%;
+  font-size: 3vh;
+  text-align: center;
+  font-weight: 600;
+}
+.top__btn {
+  position: absolute;
+  top: 26vh;
+  width: 100%;
+}
+@media screen and (min-width: 1050px) {
+  .top__btn {
+    width: 90%;
+    top: 36vh;
+  }
 }

@@ -1,6 +1,8 @@
 .first {
   display: flex;
   flex-direction: column;
+}
+.text_center {
   text-align: center;
 }
 .first hr {
@@ -30,6 +32,7 @@
 }
 .profile__location {
   color: grey;
+  margin: 0.5em 0 0 0;
 }
 .userName {
   color: grey;
@@ -100,7 +103,6 @@
 }
 .notification__icon {
   font-size: 20px;
-  transform: rotate(15deg);
   fill: rgb(235, 113, 0);
 }
 .requests {
