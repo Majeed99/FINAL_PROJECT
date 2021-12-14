@@ -11,7 +11,6 @@ function PostCard(props) {
   const userId = atob(token.split(".")[1]);
 
   async function deletePost() {
-    console.log({ id: userId, postId: el._id });
     await axios
       .delete("api/posts/deletePost", {
         data: { id: userId, postId: el._id },
