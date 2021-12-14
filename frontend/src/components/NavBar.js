@@ -11,6 +11,7 @@ import { MdTimeline } from "react-icons/md";
 import { GrLogout } from "react-icons/gr";
 import { FaUser } from "react-icons/fa";
 import { BiSearchAlt } from "react-icons/bi";
+import { FaPlus } from "react-icons/fa";
 
 function NavBar() {
   const navigate = useNavigate();
@@ -25,19 +26,19 @@ function NavBar() {
   } else setAuth(false);
 
   //FUNCTION FOR ACTIVE LINK
-  function activeClass(clicked) {
-    let elements = document.getElementsByTagName("a");
-    for (const el of elements) {
-      el.classList.remove("active");
-    }
-    if (clicked.target.tagName === "svg") {
-      clicked.target.parentElement.className = "active";
-    } else if (clicked.target.tagName === "path") {
-      clicked.target.parentElement.parentElement.className = "active";
-    } else if (clicked.target.tagName === "P") {
-      clicked.target.parentElement.className = "active";
-    } else clicked.target.className = "active";
-  }
+  // function activeClass(clicked) {
+  //   let elements = document.getElementsByTagName("a");
+  //   for (const el of elements) {
+  //     el.classList.remove("active");
+  //   }
+  //   if (clicked.target.tagName === "svg") {
+  //     clicked.target.parentElement.className = "active";
+  //   } else if (clicked.target.tagName === "path") {
+  //     clicked.target.parentElement.parentElement.className = "active";
+  //   } else if (clicked.target.tagName === "P") {
+  //     clicked.target.parentElement.className = "active";
+  //   } else clicked.target.className = "active";
+  // }
 
   return (
     <div className="navBar">
@@ -45,10 +46,10 @@ function NavBar() {
       {!auth ? (
         <Link
           to="/"
-          className="navBar__links active"
+          className="navBar__links"
           onClick={(e) => {
             e.preventDefault();
-            activeClass(e);
+            // activeClass(e);
             navigate("/");
           }}
         >
@@ -62,7 +63,7 @@ function NavBar() {
           className="navBar__links"
           onClick={(e) => {
             e.preventDefault();
-            activeClass(e);
+            // activeClass(e);
             navigate("/signup");
           }}
         >
@@ -76,7 +77,7 @@ function NavBar() {
           className="navBar__links "
           onClick={(e) => {
             e.preventDefault();
-            activeClass(e);
+            // activeClass(e);
             navigate("/signin");
           }}
         >
@@ -91,12 +92,12 @@ function NavBar() {
           className="navBar__links"
           onClick={(e) => {
             e.preventDefault();
-            activeClass(e);
+            // activeClass(e);
             navigate("/timeline");
           }}
         >
           <MdTimeline className="Link__Icons" />
-          <p className="navBar__text active"> TimeLine</p>
+          <p className="navBar__text active"> </p>
         </Link>
       ) : null}
 
@@ -106,12 +107,27 @@ function NavBar() {
           className="navBar__links"
           onClick={(e) => {
             e.preventDefault();
-            activeClass(e);
+            // activeClass(e);
             navigate("/Search");
           }}
         >
           <BiSearchAlt className="Link__Icons" />
-          <p className="navBar__text "> Search</p>
+          <p className="navBar__text "> </p>
+        </Link>
+      ) : null}
+
+      {auth ? (
+        <Link
+          to="/NewPost"
+          className="navBar__links active"
+          onClick={(e) => {
+            e.preventDefault();
+            // activeClass(e);
+            navigate("/NewPost");
+          }}
+        >
+          <FaPlus className="Link__Icons" />
+          <p className="navBar__text"> </p>
         </Link>
       ) : null}
 
@@ -121,12 +137,12 @@ function NavBar() {
           className="navBar__links"
           onClick={(e) => {
             e.preventDefault();
-            activeClass(e);
+            // activeClass(e);
             navigate("/Profile");
           }}
         >
           <FaUser className="Link__Icons" />
-          <p className="navBar__text "> Profile</p>
+          <p className="navBar__text "> </p>
         </Link>
       ) : null}
 
@@ -147,7 +163,7 @@ function NavBar() {
           }}
         >
           <GrLogout className="Link__Icons" fill="red" />
-          <p className="navBar__text"> Sign Out</p>
+          <p className="navBar__text"> </p>
         </Link>
       ) : null}
     </div>

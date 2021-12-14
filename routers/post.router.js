@@ -12,15 +12,12 @@ router.get("/getPosts/:id", async (req, res) => {
 });
 
 // ADD NEW POST TO userID
-router.post("/addPost", async (req, res) => {
-  const { id, text, location, locationId } = req.body;
+router.post("/addPost/:id", async (req, res) => {
+  // const { id, text, location, locationId } = req.body;
+  const id = req.params.id;
   const u = await users.findByIdAndUpdate(id, {
     $push: {
-      posts: {
-        text: text,
-        location: location,
-        locationId: locationId,
-      },
+      posts: req.body,
     },
   });
   res.send("added");

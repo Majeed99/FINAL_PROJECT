@@ -37,21 +37,16 @@
   /* background-color: rgba(192, 0, 0, 0.808); */
 }
 .navBar .active .Link__Icons {
-  transition: 0.5s;
   padding: 15px;
   position: fixed;
   top: calc(100vh - 100px);
   z-index: 1;
   border-radius: 50px;
-  background-color: rgb(167, 167, 167);
+  background-color: rgb(148, 148, 148);
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
 }
 .navBar .navBar__text {
-  visibility: hidden;
-  height: 0px;
-  opacity: 0;
-  margin: 0px;
-  font-weight: bold;
+  margin: 0;
 }
 .navBar .active .navBar__text {
   height: max-content;
@@ -96,22 +91,22 @@
     left: calc(10% - 27px);
     z-index: 1;
     border-radius: 50px;
-    background-color: rgb(167, 167, 167);
+    /* background-color: rgb(167, 167, 167); */
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
   }
   .navBar .navBar__text {
-    visibility: hidden;
+    /* visibility: hidden; */
     height: 0px;
-    opacity: 0;
+    /* opacity: 0; */
     margin: 0px;
     font-weight: bold;
     padding-right: 15px;
   }
   .navBar .active .navBar__text {
-    height: max-content;
+    /* height: max-content;
     visibility: visible;
     transition: 2s;
     opacity: 1;
-    padding-top: 0px;
+    padding-top: 0px; */
   }
 }

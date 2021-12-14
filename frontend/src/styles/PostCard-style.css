@@ -1,0 +1,12 @@
+.remove_post {
+  width: max-content;
+  position: absolute;
+  left: 90vw;
+  padding: 0;
+  background-color: transparent;
+  border: 0;
+}
+
+.REMOVE__ICON {
+  font-size: 25px;
+}
