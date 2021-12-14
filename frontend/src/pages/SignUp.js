@@ -14,7 +14,7 @@ function SignUp() {
   });
   useEffect(() => {
     if (Password.length > 8) {
-      CheckStyle.char = "rgb(173, 255, 177)";
+      CheckStyle.char = "#28a5007d";
       setCheckStyle({ ...CheckStyle });
     } else {
       CheckStyle.char = "";
@@ -22,7 +22,7 @@ function SignUp() {
     }
 
     if (/[A-Z]/.test(Password)) {
-      CheckStyle.upperCase = "rgb(173, 255, 177)";
+      CheckStyle.upperCase = "#28a5007d";
       setCheckStyle({ ...CheckStyle });
     } else {
       CheckStyle.upperCase = "";
@@ -30,7 +30,7 @@ function SignUp() {
     }
 
     if (/[a-z]/.test(Password)) {
-      CheckStyle.lowerCase = "rgb(173, 255, 177)";
+      CheckStyle.lowerCase = "#28a5007d";
       setCheckStyle({ ...CheckStyle });
     } else {
       CheckStyle.lowerCase = "";

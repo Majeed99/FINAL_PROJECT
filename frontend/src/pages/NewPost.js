@@ -1,5 +1,5 @@
 import "../styles/NewPost-style.css";
-import { MdAddPhotoAlternate } from "react-icons/md";
+import { MdAddPhotoAlternate, MdPlace } from "react-icons/md";
 import { useState, useEffect } from "react";
 import UploadImage from "../functions/UploadImage";
 import useGeoLocation from "../components/useGeoLocation";
@@ -27,7 +27,7 @@ function NewPost() {
         setErrorMessage("");
         setCoordinates(location.coordinates);
 
-        console.log(location.coordinates);
+        // console.log(location.coordinates);
       }
     }
   }, [location]);
@@ -124,7 +124,14 @@ function NewPost() {
                     }
                   }}
                 >
-                  {place.name}
+                  {" "}
+                  <div className="place_icon">
+                    <MdPlace fill="#09303a" />
+                  </div>
+                  <div className="place_name_distance">
+                    <b>{place.name}</b>
+                    <div>{place.distance} m</div>
+                  </div>
                 </p>
               );
             })}

@@ -49,3 +49,8 @@
   top: -2vh;
   left: -10vw;
 }
+.about_us{
+  display: grid;
+  grid-template-columns: 1fr 1fr 
+  ;
+}

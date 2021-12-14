@@ -21,7 +21,7 @@
   font-size: 25px;
   width: max-content;
   margin: auto;
-  background: linear-gradient(90deg, rgb(231, 3, 155), rgb(124, 18, 98));
+  background: linear-gradient(90deg, rgb(19 88 107), rgb(0 0 0));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -33,7 +33,7 @@
 }
 .form__signup > input:focus {
   outline: none;
-  border-bottom: 2px solid rgb(141, 20, 111);
+  border-bottom: 3px solid #0e3e4b;
 }
 .form__signup > label {
   color: rgb(100, 100, 100);
@@ -58,7 +58,7 @@
   margin-top: 10px;
   padding: 10px 0;
   border: 0;
-  background-image: linear-gradient(45deg, rgb(253, 0, 169), rgb(124, 18, 98));
+  background-image: linear-gradient(45deg, rgb(21 93 112), rgb(0 0 0));
   border-radius: 50px;
   color: rgb(255, 255, 255);
 }
@@ -78,7 +78,7 @@
   margin-top: 10px;
   padding: 10px 0;
   border: 0;
-  background-image: linear-gradient(45deg, rgb(253, 0, 169), rgb(124, 18, 98));
+  background-image: linear-gradient(45deg, rgb(21 93 112), rgb(0 0 0));
   border-radius: 50px;
   color: rgb(255, 255, 255);
 }

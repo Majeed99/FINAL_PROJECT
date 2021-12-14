@@ -97,7 +97,7 @@ function NavBar() {
           }}
         >
           <MdTimeline className="Link__Icons" />
-          <p className="navBar__text active"> </p>
+          <p className="navBar__text active"> Time Line</p>
         </Link>
       ) : null}
 
@@ -112,7 +112,7 @@ function NavBar() {
           }}
         >
           <BiSearchAlt className="Link__Icons" />
-          <p className="navBar__text "> </p>
+          <p className="navBar__text "> Search</p>
         </Link>
       ) : null}
 
@@ -142,7 +142,7 @@ function NavBar() {
           }}
         >
           <FaUser className="Link__Icons" />
-          <p className="navBar__text "> </p>
+          <p className="navBar__text "> Profile</p>
         </Link>
       ) : null}
 
@@ -163,7 +163,10 @@ function NavBar() {
           }}
         >
           <GrLogout className="Link__Icons" fill="red" />
-          <p className="navBar__text"> </p>
+          <p className="navBar__text" style={{ color: "red" }}>
+            {" "}
+            Sign Out
+          </p>
         </Link>
       ) : null}
     </div>

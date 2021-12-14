@@ -21,7 +21,7 @@ function Friends() {
 
   return (
     <div>
-      <div className="yourFriends__header"> Your Friends</div>
+      <div className="yourFriends__header"> My Friends</div>
       <div className="page">
         {Friends.map((el) => {
           return <UserCard user={el} />;

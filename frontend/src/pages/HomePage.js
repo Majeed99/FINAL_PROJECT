@@ -33,6 +33,11 @@ function HomePage() {
           />
         </div>
       </div>
+      <div>
+        <h1>About Us</h1>
+        <div className="about_us"></div>
+      </div>
+      <div> Contact Us</div>
     </div>
   );
 }

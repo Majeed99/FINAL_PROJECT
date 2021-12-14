@@ -1,28 +1,3 @@
-.custom_select {
-  width: 100%;
-  cursor: pointer;
-  padding: 1%;
-  border: 0;
-  border-radius: 0px;
-  height: 9vh;
-  font-size: 100%;
-  outline: none;
-  color: white;
-  background-color: gray;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  background-image: url("data:image/svg+xml;utf8,<svg fill='white' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
-  background-repeat: no-repeat;
-  background-position-x: 98%;
-  background-position-y: 50%;
-}
-
-.custom_select option {
-  background-color: rgb(212, 212, 212);
-  width: 100% !important;
-  color: black;
-}
-
 .post_text {
   width: 98%;
   padding: 0;
@@ -42,12 +17,13 @@
 .submit_post {
   border-radius: 500px;
   border: 0;
-  background-color: rgb(50, 33, 66);
+  background-color: #0c3e4c;
   color: white;
   /* padding: 1%; */
   width: 40%;
   /* margin: 0 5vw; */
   height: 100%;
+  cursor: pointer;
 }
 
 .btn-file {
@@ -62,7 +38,7 @@
   height: 6vh;
   color: white;
   border-radius: 500px;
-  background-color: rgb(2, 73, 73);
+  background-color: rgb(160, 85, 0);
   overflow: hidden;
 }
 .btn-file input[type="file"] {
@@ -74,6 +50,9 @@
   opacity: 0;
   outline: none;
   display: block;
+  height: 100%;
+  width: 100%;
+  cursor: pointer;
 }
 .photo_icon {
   font-size: 25px;
@@ -91,14 +70,6 @@
   width: 50%;
 }
 
-@media screen and (min-width: 1050px) {
-  .file_and_post {
-    display: flex;
-    position: absolute;
-    bottom: 50px;
-    width: 90%;
-  }
-}
 .postPhoto {
   border-radius: 15px;
   max-width: 95%;
@@ -121,11 +92,14 @@
   font-size: 100%;
   outline: none;
   color: white;
-  background-color: gray;
+  /* background-color: gray; */
+  /* background-color: #0b3c4a; */
+  background-image: linear-gradient(#155e72, #0b3c4a);
   align-items: center;
   -webkit-appearance: none;
   -moz-appearance: none;
-  background-image: url("data:image/svg+xml;utf8,<svg fill='white' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+  background-image: url("data:image/svg+xml;utf8,<svg fill='white' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>"),
+    linear-gradient(#155e72, #0b3c4a);
   background-repeat: no-repeat;
   background-position-x: 98%;
   background-position-y: 50%;
@@ -133,22 +107,44 @@
 
 .dropdown-content {
   display: none;
-  position: absolute;
-  background-color: #cfcfcf;
+  position: relative;
+  background-color: #f1f1f1;
   width: 100%;
   color: black;
   padding: 0;
   z-index: 1;
+  height: 70vh;
+  overflow: auto;
 }
 .dropdown-content p {
   display: flex;
+  width: 100%;
+  margin: 0;
+  min-height: 8vh;
+  border-bottom: 1px solid gray;
+
+  justify-content: space-evenly;
+}
+.place_icon {
+  width: 10vw;
+  display: flex;
   align-items: center;
+  font-size: 35px;
+  align-items: center;
+  justify-content: center;
+}
+.place_name_distance {
+  display: flex;
+  width: 90vw;
   padding: 0 0 0 1%;
   margin: 0;
   min-height: 8vh;
+
+  flex-direction: column;
+  justify-content: space-evenly;
 }
 .dropdown-content p:hover {
-  background-color: #bdbdbd;
+  background-color: #d6d6d6;
 }
 .dropdown:hover .dropdown-content {
   /* display: block; */
@@ -158,4 +154,19 @@
   display: flex;
   align-items: center;
   padding: 0 0 0 1%;
+}
+
+@media screen and (min-width: 1050px) {
+  .place_icon {
+    width: 5vw;
+  }
+  .place_name_distance {
+    width: 95vw;
+  }
+  .file_and_post {
+    display: flex;
+    position: absolute;
+    bottom: 50px;
+    width: 90%;
+  }
 }
