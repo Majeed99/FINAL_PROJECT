@@ -18,7 +18,7 @@ function HomePage() {
             alt=""
           />
           <img
-            data-aos="fade-left"
+            data-aos="zoom-in"
             data-aos-duration="2000"
             className="image2"
             src="https://i.pinimg.com/736x/61/48/e2/6148e2a31adb83c6bc27dcc8e0af02d0.jpg"
