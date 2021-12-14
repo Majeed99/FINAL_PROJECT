@@ -42,14 +42,19 @@ function NewPost() {
     };
 
     fetch(
-      `https://api.foursquare.com/v3/places/nearby?ll=${Coordinates.lat}%2C${Coordinates.lng}&limit=21`,
+      `https://api.foursquare.com/v3/places/nearby?ll=${Coordinates.lat}%2C${Coordinates.lng}&limit=30`,
       options
     )
       .then((response) => response.json())
       .then((response) => {
-        setLocationsArea(response.results);
+        let arr = response.results;
+        arr = arr.sort(function (a, b) {
+          return a.distance - b.distance;
+        });
+        setLocationsArea(arr);
         if (response.results) setloading(false);
-        console.log(response.results);
+
+        // console.log(arr);
       })
       .catch((err) => console.error(err));
   }, [Coordinates]);
