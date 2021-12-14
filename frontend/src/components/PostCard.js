@@ -10,12 +10,15 @@ function PostCard(props) {
   const token = document.cookie.split("=")[1];
   const userId = atob(token.split(".")[1]);
 
-  function deletePost() {
-    axios
+  async function deletePost() {
+    console.log({ id: userId, postId: el._id });
+    await axios
       .delete("api/posts/deletePost", {
-        data: { id: user._id, postId: el._id },
+        data: { id: userId, postId: el._id },
       })
-      .then((res) => window.location.reload());
+      .then((res) => {
+        window.location.reload();
+      });
   }
 
   return (
@@ -25,16 +28,18 @@ function PostCard(props) {
       </div>
 
       <div className="post_Card_info">
-        <button
-          className="remove_post"
-          onClick={(e) => {
-            e.preventDefault();
-            deletePost();
-          }}
-        >
-          {" "}
-          <MdDeleteForever className="REMOVE__ICON" fill="red" />{" "}
-        </button>
+        {user._id === userId ? (
+          <button
+            className="remove_post"
+            onClick={(e) => {
+              e.preventDefault();
+              deletePost();
+            }}
+          >
+            {" "}
+            <MdDeleteForever className="REMOVE__ICON" fill="red" />{" "}
+          </button>
+        ) : null}
         <p className="post__userName">{user.userName}</p>
         <b>{el.location}</b>
         <p> {el.text}</p>
