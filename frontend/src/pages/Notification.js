@@ -7,7 +7,6 @@ import { FaCheck } from "react-icons/fa";
 import { RiCloseFill } from "react-icons/ri";
 import Loading from "../components/Loading";
 
-
 function Notification() {
   const [RequestUser, setRequestUser] = useState([]);
   const [loading, setloading] = useState(true);
@@ -32,6 +31,9 @@ function Notification() {
   }
 
   function reject(id) {
+    const cookieCheck = document.cookie;
+    token = cookieCheck.split("=")[1];
+    userId = atob(token.split(".")[1]);
     axios
       .delete("/api/friends/reject", {
         data: { userId: userId, friendId: id },
@@ -41,6 +43,9 @@ function Notification() {
       });
   }
   function accept(id) {
+    const cookieCheck = document.cookie;
+    token = cookieCheck.split("=")[1];
+    userId = atob(token.split(".")[1]);
     axios
       .post("/api/friends/accept", { userId: userId, friendId: id })
       .then((res) => {

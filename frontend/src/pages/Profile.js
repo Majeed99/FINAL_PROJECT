@@ -6,7 +6,6 @@ import Loading from "../components/Loading";
 import PostCard from "../components/PostCard";
 import { IoIosNotifications } from "react-icons/io";
 
-
 function Profile() {
   let token, userId;
   const navigate = useNavigate();
@@ -14,7 +13,6 @@ function Profile() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    
     const cookieCheck = document.cookie;
     if (cookieCheck === "") {
       navigate("/signin");
@@ -28,6 +26,10 @@ function Profile() {
   async function fetchData() {
     const res = await axios.get("/api/users/getUser/" + userId);
     const data = await res.data;
+    data.posts = data.posts.sort(function (a, b) {
+      return new Date(b.createdAt) - new Date(a.createdAt);
+    });
+
     await setUserData(data);
     setLoading(false);
   }

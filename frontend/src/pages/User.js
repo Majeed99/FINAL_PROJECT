@@ -28,6 +28,9 @@ function User() {
   async function fetchData() {
     const res = await axios.get("/api/users/getUser/" + id);
     const data = await res.data;
+    data.posts = data.posts.sort(function (a, b) {
+      return new Date(b.createdAt) - new Date(a.createdAt);
+    });
     await setUserData(data);
     setLoading(false);
     if (data.friends.includes(userId)) setRelation("friends");
@@ -37,10 +40,13 @@ function User() {
   }
 
   async function sendRequest() {
+    const cookieCheck = document.cookie;
+    token = cookieCheck.split("=")[1];
+    userId = atob(token.split(".")[1]);
     axios
       .post("/api/friends/request", { userId: userId, friendId: id })
       .then((res) => {
-        fetchData();
+        if (res) fetchData();
       })
       .catch((err) => {
         if (err) console.log(err);
@@ -48,6 +54,9 @@ function User() {
   }
 
   async function cancelRequest() {
+    const cookieCheck = document.cookie;
+    token = cookieCheck.split("=")[1];
+    userId = atob(token.split(".")[1]);
     const data = await { userId: userId, friendId: id };
     axios
       .delete("/api/friends/cancel", { data: data })

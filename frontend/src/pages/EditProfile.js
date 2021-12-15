@@ -23,6 +23,9 @@ function EditProfile() {
   }, []);
 
   async function fetchData() {
+    const cookieCheck = document.cookie;
+    token = cookieCheck.split("=")[1];
+    userId = atob(token.split(".")[1]);
     const res = await axios.get("api/users/getUser/" + userId);
     const data = await res.data;
     setUserData(data);

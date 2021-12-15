@@ -33,13 +33,13 @@ router.get("/getUser/:id", (req, res) => {
 router.post("/", async (req, res) => {
   const { name, userName, email, password } = req.body;
   const passwordHash = await bcrypt.hash(password, 10);
-  let userNameExist = await users.findOne({ userName });
+  let userNameExist = await users.findOne({ userName: userName.toLowerCase() });
   if (userNameExist) {
     res.send("userName is already used");
     return;
   }
 
-  let emailExist = await users.findOne({ email });
+  let emailExist = await users.findOne({ email: email.toLowerCase() });
 
   if (emailExist) {
     res.send("E-mail is already used");
@@ -50,7 +50,7 @@ router.post("/", async (req, res) => {
     .create({
       name: name,
       userName: userName,
-      email: email,
+      email: email.toLowerCase(),
       password: passwordHash,
     })
     .then(() => {
@@ -64,7 +64,7 @@ router.post("/", async (req, res) => {
 // CHECK USER FOR SIGN IN
 router.post("/signIn", async (req, res) => {
   const { email, password } = req.body;
-  let u = await users.findOne({ email: email }).lean();
+  let u = await users.findOne({ email: email.toLowerCase() }).lean();
   if (u == null) res.send("invalid email/password");
   if (await bcrypt.compare(password, u.password)) {
     console.log(u._id);
@@ -77,7 +77,15 @@ router.post("/signIn", async (req, res) => {
 // UPDATE USER DATA
 router.put("/editProfile/:id", async (req, res) => {
   const id = req.params.id;
-  await users.findByIdAndUpdate(id, req.body);
+  const { name, location, bio, gender, avatar, header } = req.body;
+  await users.findByIdAndUpdate(id, {
+    name,
+    location,
+    bio,
+    gender,
+    avatar,
+    header,
+  });
   res.end();
 });
 

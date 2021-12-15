@@ -16,7 +16,7 @@ router.post("/request", async (req, res) => {
       requests: userId,
     },
   });
-  res.send("added");
+  if (u) res.send("added");
 });
 
 router.get("/getAllRequest/:id", async (req, res) => {
