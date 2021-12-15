@@ -37,4 +37,38 @@ router.delete("/deletePost", async (req, res) => {
   res.send("deleted");
 });
 
+router.get("/getTimeLine/:id", async (req, res) => {
+  let id = req.params.id;
+  const u = await users.findById(id);
+  let friends = u.friends;
+  friends.push(id);
+  let arrPosts = friends.map(async (frId) => {
+    let friendData = await users.findById(frId);
+    let friendPosts = friendData.posts;
+    let arrFriendPosts = await friendPosts.map((post) => {
+      let userData = {
+        userName: friendData.userName,
+        name: friendData.name,
+        _id: friendData._id,
+        avatar: friendData.avatar,
+      };
+      let opj = { userData, post };
+
+      return opj;
+    });
+    return arrFriendPosts;
+  });
+  Promise.all(arrPosts).then((data) => {
+    let arrResults = [];
+    data.forEach((arr) => {
+      arr.forEach((post) => {
+        arrResults.push(post);
+      });
+    });
+    let SortedPosts = arrResults.sort(function (a, b) {
+      return b.post.createdAt - a.post.createdAt;
+    });
+    res.json(SortedPosts);
+  });
+});
 module.exports = router;
