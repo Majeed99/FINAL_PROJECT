@@ -14,7 +14,7 @@ function SignIn() {
     axios
       .post("api/users/signIn", UserData)
       .then((res) => {
-        console.log(res.data);
+        
         if (res.data === "invalid email/password") {
           setErrorMessage(res.data);
           return;

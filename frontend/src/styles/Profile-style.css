@@ -58,6 +58,7 @@
 .post_Card_avatar {
   width: 15vw;
   text-align: center;
+  cursor: pointer;
 }
 
 .post_Card_avatar img {
@@ -82,6 +83,13 @@
 .post__time {
   margin: 0.25em 0;
   color: gray;
+  font-size: 13px;
+}
+.post_view_comments {
+  font-weight: 500;
+  margin: 0.25em 0;
+  font-size: 14px;
+  cursor: pointer;
 }
 
 .post__Image {
@@ -96,6 +104,7 @@
 }
 
 .post__userName {
+  cursor: pointer;
   margin: 0.5em 0;
   color: rgb(70, 70, 70);
 }

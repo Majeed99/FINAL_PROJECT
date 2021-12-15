@@ -6,6 +6,7 @@ import useGeoLocation from "../components/useGeoLocation";
 import Loading from "../components/Loading";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import CheckAuthorization from "../functions/CheckAuthorization";
 
 function NewPost() {
   const navigate = useNavigate();
@@ -18,6 +19,12 @@ function NewPost() {
   const [LocationsArea, setLocationsArea] = useState([]);
   const location = useGeoLocation();
 
+  const check = CheckAuthorization();
+  let token, userId;
+  if (check) {
+    token = document.cookie.split("=")[1];
+    userId = atob(token.split(".")[1]);
+  }
   useEffect(() => {
     // console.log(location);
     if (location.loaded) {

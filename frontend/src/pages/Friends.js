@@ -3,10 +3,16 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import UserCard from "../components/UserCard";
 import Loading from "../components/Loading";
+import CheckAuthorization from "../functions/CheckAuthorization";
 
 function Friends() {
-  const token = document.cookie.split("=")[1];
-  const userId = atob(token.split(".")[1]);
+  const check = CheckAuthorization();
+  let token;
+  let userId;
+  if (check) {
+    token = document.cookie.split("=")[1];
+    userId = atob(token.split(".")[1]);
+  }
   const [Friends, setFriends] = useState([]);
   const [loading, setloading] = useState(true);
 

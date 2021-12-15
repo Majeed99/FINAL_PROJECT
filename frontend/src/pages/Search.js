@@ -5,13 +5,20 @@ import Loading from "../components/Loading";
 import UserCard from "../components/UserCard";
 import { IoMdSearch } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
+import CheckAuthorization from "../functions/CheckAuthorization";
 
 function Search() {
+  const check = CheckAuthorization();
   const navigate = useNavigate();
   const [loading, setloading] = useState(true);
   const [Search, setSearch] = useState("");
   const [Message, setMessage] = useState("");
   const [users, setUsers] = useState([]);
+  let token, userId;
+  if (check) {
+    token = document.cookie.split("=")[1];
+    userId = atob(token.split(".")[1]);
+  }
 
   useEffect(() => {
     if (Search === "") {

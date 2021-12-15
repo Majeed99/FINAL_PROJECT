@@ -14,6 +14,7 @@ import Search from "./pages/Search";
 import User from "./pages/User";
 import Notification from "./pages/Notification";
 import NewPost from "./pages/NewPost";
+import Post from "./pages/Post";
 import AOS from "aos";
 import { useEffect } from "react";
 import "aos/dist/aos.css";
@@ -43,6 +44,7 @@ function App() {
               <Route exact path="/User/:id" element={<User />} />
               <Route exact path="/Notification" element={<Notification />} />
               <Route exact path="/NewPost" element={<NewPost />} />
+              <Route exact path="/Post" element={<Post />} />
             </Routes>
           </div>
         </BrowserRouter>

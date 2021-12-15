@@ -50,7 +50,7 @@ function SignUp() {
     axios
       .post("api/users/", UserData)
       .then((res) => {
-        console.log(res.data);
+        
         if (res.data === "done") navigate("/signin");
         else if (res.data === "userName is already used") {
           setErrorMessage("userName is already used");

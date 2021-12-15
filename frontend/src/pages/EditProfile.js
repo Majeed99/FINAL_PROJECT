@@ -4,8 +4,15 @@ import Loading from "../components/Loading";
 import "../styles/SignUp-style.css";
 import UploadImage from "../functions/UploadImage";
 import { useNavigate } from "react-router-dom";
+import CheckAuthorization from "../functions/CheckAuthorization";
 
 function EditProfile() {
+  const check = CheckAuthorization();
+  let token, userId;
+  if (check) {
+    token = document.cookie.split("=")[1];
+    userId = atob(token.split(".")[1]);
+  }
   const navigate = useNavigate();
   const [UserData, setUserData] = useState({});
   const [loading, setLoading] = useState(true);
@@ -15,8 +22,6 @@ function EditProfile() {
   }, []);
 
   async function fetchData() {
-    const token = document.cookie.split("=")[1];
-    const userId = atob(token.split(".")[1]);
     const res = await axios.get("api/users/getUser/" + userId);
     const data = await res.data;
     setUserData(data);
@@ -27,8 +32,6 @@ function EditProfile() {
     await axios
       .put("api/users/editProfile/" + UserData._id, UserData)
       .then((res) => {
-        console.log(UserData);
-        console.log(res);
         navigate("/Profile");
       });
   }

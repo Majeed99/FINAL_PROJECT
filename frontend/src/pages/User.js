@@ -4,10 +4,16 @@ import Loading from "../components/Loading";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import PostCard from "../components/PostCard";
 import "../styles/User-style.css";
+import CheckAuthorization from "../functions/CheckAuthorization";
 
 function User() {
-  const token = document.cookie.split("=")[1];
-  const userId = atob(token.split(".")[1]);
+  const check = CheckAuthorization();
+  let token;
+  let userId;
+  if (check) {
+    token = document.cookie.split("=")[1];
+    userId = atob(token.split(".")[1]);
+  }
   const { id } = useParams();
   const [UserData, setUserData] = useState({});
   const [loading, setLoading] = useState(true);
@@ -53,7 +59,6 @@ function User() {
       });
   }
 
-
   async function unfriendRequest() {
     const data = await { userId: userId, friendId: id };
     axios
@@ -65,8 +70,6 @@ function User() {
         if (err) console.log(err);
       });
   }
-
-
 
   if (loading) return <Loading />;
   return (

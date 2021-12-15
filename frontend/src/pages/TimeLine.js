@@ -1,76 +1,46 @@
 import "../styles/TimeLine-style.css";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import useGeoLocation from "../components/useGeoLocation";
-import PostCard from "../components/PostCard";
-import UploadImage from "../functions/UploadImage";
 import Loading from "../components/Loading";
+import PostCard from "../components/PostCard";
+import logo from "../images/image4.png";
+import CheckAuthorization from "../functions/CheckAuthorization";
+
 function TimeLine() {
-  const [Posts, setPosts] = useState([]);
-  const [errorMessage, setErrorMessage] = useState("");
-  const [Image, setImage] = useState();
-  const token = document.cookie.split("=")[1];
-  const userId = atob(token.split(".")[1]);
-  const location = useGeoLocation();
-  // console.log(userId);
+  const check = CheckAuthorization();
+
+  const [TimeLine, setTimeLine] = useState([]);
+  const [loading, setLoading] = useState(true);
+  let token;
+  let userId;
+  if (check) {
+    token = document.cookie.split("=")[1];
+    userId = atob(token.split(".")[1]);
+  }
 
   useEffect(() => {
     axios
-      .get("api/posts/getPosts/" + userId)
+      .get("api/posts/getTimeLine/" + userId)
       .then((res) => {
-        setPosts(res.data);
+        setTimeLine(res.data);
+        setLoading(false);
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
 
-  useEffect(() => {
-    // console.log(location);
-    if (location.loaded) {
-      if (location.error)
-        setErrorMessage("Please allow permission of location");
-      else {
-        setErrorMessage("");
-        console.log(location.coordinates);
-      }
-    }
-  }, [location]);
-
-  async function addNewPost() {
-    const imageUrl = await UploadImage(Image);
-    console.log(imageUrl);
-    console.log("clicked!!");
-  }
+  if (loading) return <Loading />;
 
   return (
-    <div className="page">
-      {errorMessage !== "" ? (
-        <div className="errorMessage">{errorMessage}</div>
-      ) : null}
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          addNewPost();
-        }}
-      >
-        <input type="text" placeholder="What are you up to?"></input>
-        <input
-          type="file"
-          accept="image/jpeg, image/png"
-          placeholder="upload you image"
-          onChange={(e) => {
-            setImage(e.target.files[0]);
-          }}
-        />
-        <button type="submit"> Post </button>
-      </form>
-
+    <div>
+      <div className="timeLine__header">
+        <img src={logo} alt="" height="90%" />
+      </div>
       <div className="page">
-        {/* DISPLAY POSTS TIMELINE*/}
-        {/*Posts.map((el) => {
-          return <PostCard el={el} />;
-        })*/}
+        {TimeLine.map((el) => {
+          return <PostCard el={el.post} user={el.userData} />;
+        })}
       </div>
     </div>
   );
