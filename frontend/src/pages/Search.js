@@ -3,30 +3,29 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import Loading from "../components/Loading";
 import UserCard from "../components/UserCard";
-import { IoMdSearch } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
-import CheckAuthorization from "../functions/CheckAuthorization";
 
 function Search() {
-  const check = CheckAuthorization();
   const navigate = useNavigate();
   const [loading, setloading] = useState(true);
   const [Search, setSearch] = useState("");
   const [Message, setMessage] = useState("");
   const [users, setUsers] = useState([]);
-  let token, userId;
-  if (check) {
-    token = document.cookie.split("=")[1];
-    userId = atob(token.split(".")[1]);
-  }
 
   useEffect(() => {
+    const cookieCheck = document.cookie;
+    if (cookieCheck === "") {
+      navigate("/signin");
+      return;
+    }
+
     if (Search === "") {
       setloading(false);
       setMessage("There is no users");
       setUsers([]);
       return;
     }
+
     axios.post("api/friends/search", { userName: Search }).then((res) => {
       if (res.data === "no users") {
         setloading(false);
@@ -38,7 +37,7 @@ function Search() {
         setUsers(res.data);
       }
     });
-  }, [Search]);
+  }, [Search, navigate]);
 
   return (
     <div>

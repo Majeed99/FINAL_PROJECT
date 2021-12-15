@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import "../styles/NavBar-style.css";
 import userStatus from "../components/userStatus";
-import { useContext, useState, useEffect } from "react";
+import { useContext } from "react";
 import axios from "axios";
 // ICONS IMPORTS
 import { AiFillHome } from "react-icons/ai";
@@ -18,27 +18,9 @@ function NavBar() {
   const { auth, setAuth } = useContext(userStatus);
 
   const token = document.cookie.split("jwt=")[1];
-  let userId = null;
   if (token) {
-    // console.log(token);
-    userId = atob(token.split(".")[1]);
     setAuth(true);
   } else setAuth(false);
-
-  //FUNCTION FOR ACTIVE LINK
-  // function activeClass(clicked) {
-  //   let elements = document.getElementsByTagName("a");
-  //   for (const el of elements) {
-  //     el.classList.remove("active");
-  //   }
-  //   if (clicked.target.tagName === "svg") {
-  //     clicked.target.parentElement.className = "active";
-  //   } else if (clicked.target.tagName === "path") {
-  //     clicked.target.parentElement.parentElement.className = "active";
-  //   } else if (clicked.target.tagName === "P") {
-  //     clicked.target.parentElement.className = "active";
-  //   } else clicked.target.className = "active";
-  // }
 
   return (
     <div className="navBar">
@@ -49,7 +31,6 @@ function NavBar() {
           className="navBar__links"
           onClick={(e) => {
             e.preventDefault();
-            // activeClass(e);
             navigate("/");
           }}
         >
@@ -63,7 +44,6 @@ function NavBar() {
           className="navBar__links"
           onClick={(e) => {
             e.preventDefault();
-            // activeClass(e);
             navigate("/signup");
           }}
         >
@@ -77,7 +57,6 @@ function NavBar() {
           className="navBar__links "
           onClick={(e) => {
             e.preventDefault();
-            // activeClass(e);
             navigate("/signin");
           }}
         >
@@ -92,7 +71,6 @@ function NavBar() {
           className="navBar__links"
           onClick={(e) => {
             e.preventDefault();
-            // activeClass(e);
             navigate("/timeline");
           }}
         >
@@ -107,7 +85,6 @@ function NavBar() {
           className="navBar__links"
           onClick={(e) => {
             e.preventDefault();
-            // activeClass(e);
             navigate("/Search");
           }}
         >
@@ -122,7 +99,6 @@ function NavBar() {
           className="navBar__links active"
           onClick={(e) => {
             e.preventDefault();
-            // activeClass(e);
             navigate("/NewPost");
           }}
         >
@@ -137,7 +113,6 @@ function NavBar() {
           className="navBar__links"
           onClick={(e) => {
             e.preventDefault();
-            // activeClass(e);
             navigate("/Profile");
           }}
         >
@@ -153,9 +128,7 @@ function NavBar() {
           onClick={async () => {
             await axios
               .get("api/users/signOut")
-              .then((res) => {
-                console.log(res);
-              })
+              .then((res) => {})
               .catch((err) => {
                 console.log(err);
               });

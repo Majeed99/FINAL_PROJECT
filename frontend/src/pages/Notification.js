@@ -6,20 +6,22 @@ import "../styles/RequestCard-style.css";
 import { FaCheck } from "react-icons/fa";
 import { RiCloseFill } from "react-icons/ri";
 import Loading from "../components/Loading";
-import CheckAuthorization from "../functions/CheckAuthorization";
+
 
 function Notification() {
   const [RequestUser, setRequestUser] = useState([]);
   const [loading, setloading] = useState(true);
   const navigate = useNavigate();
-  const check = CheckAuthorization();
   let token, userId;
-  if (check) {
-    token = document.cookie.split("=")[1];
-    userId = atob(token.split(".")[1]);
-  }
 
   useEffect(() => {
+    const cookieCheck = document.cookie;
+    if (cookieCheck === "") {
+      navigate("/signin");
+      return;
+    }
+    token = cookieCheck.split("=")[1];
+    userId = atob(token.split(".")[1]);
     fetchRequests();
   }, []);
   async function fetchRequests() {

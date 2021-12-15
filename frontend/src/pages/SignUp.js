@@ -12,8 +12,9 @@ function SignUp() {
     upperCase: "",
     lowerCase: "",
   });
+
   useEffect(() => {
-    if (Password.length > 8) {
+    if (Password.length >= 8) {
       CheckStyle.char = "#28a5007d";
       setCheckStyle({ ...CheckStyle });
     } else {
@@ -50,7 +51,6 @@ function SignUp() {
     axios
       .post("api/users/", UserData)
       .then((res) => {
-        
         if (res.data === "done") navigate("/signin");
         else if (res.data === "userName is already used") {
           setErrorMessage("userName is already used");

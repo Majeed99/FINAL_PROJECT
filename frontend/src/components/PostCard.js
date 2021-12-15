@@ -8,7 +8,6 @@ function PostCard(props) {
   const navigate = useNavigate();
   const el = props.el;
   const user = props.user;
-  // console.log(el, user);
   const token = document.cookie.split("=")[1];
   const userId = atob(token.split(".")[1]);
 

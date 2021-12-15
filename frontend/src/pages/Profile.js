@@ -5,20 +5,23 @@ import axios from "axios";
 import Loading from "../components/Loading";
 import PostCard from "../components/PostCard";
 import { IoIosNotifications } from "react-icons/io";
-import CheckAuthorization from "../functions/CheckAuthorization";
+
 
 function Profile() {
-  const check = CheckAuthorization();
   let token, userId;
-  if (check) {
-    token = document.cookie.split("=")[1];
-    userId = atob(token.split(".")[1]);
-  }
   const navigate = useNavigate();
   const [UserData, setUserData] = useState({});
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    
+    const cookieCheck = document.cookie;
+    if (cookieCheck === "") {
+      navigate("/signin");
+      return;
+    }
+    token = cookieCheck.split("=")[1];
+    userId = atob(token.split(".")[1]);
     fetchData();
   }, []);
 

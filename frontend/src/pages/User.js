@@ -1,26 +1,26 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Loading from "../components/Loading";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import PostCard from "../components/PostCard";
 import "../styles/User-style.css";
-import CheckAuthorization from "../functions/CheckAuthorization";
 
 function User() {
-  const check = CheckAuthorization();
-  let token;
-  let userId;
-  if (check) {
-    token = document.cookie.split("=")[1];
-    userId = atob(token.split(".")[1]);
-  }
   const { id } = useParams();
   const [UserData, setUserData] = useState({});
   const [loading, setLoading] = useState(true);
   const [relation, setRelation] = useState("");
   const navigate = useNavigate();
+  let token, userId;
 
   useEffect(() => {
+    const cookieCheck = document.cookie;
+    if (cookieCheck === "") {
+      navigate("/signin");
+      return;
+    }
+    token = cookieCheck.split("=")[1];
+    userId = atob(token.split(".")[1]);
     if (userId === id) navigate("/profile");
     else fetchData();
   }, []);

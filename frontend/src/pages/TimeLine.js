@@ -1,24 +1,24 @@
 import "../styles/TimeLine-style.css";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Loading from "../components/Loading";
 import PostCard from "../components/PostCard";
 import logo from "../images/image4.png";
-import CheckAuthorization from "../functions/CheckAuthorization";
 
 function TimeLine() {
-  const check = CheckAuthorization();
-
+  const navigate = useNavigate();
   const [TimeLine, setTimeLine] = useState([]);
   const [loading, setLoading] = useState(true);
-  let token;
-  let userId;
-  if (check) {
-    token = document.cookie.split("=")[1];
-    userId = atob(token.split(".")[1]);
-  }
 
   useEffect(() => {
+    const cookieCheck = document.cookie;
+    if (cookieCheck === "") {
+      navigate("/signin");
+      return;
+    }
+    const token = cookieCheck.split("=")[1];
+    const userId = atob(token.split(".")[1]);
     axios
       .get("api/posts/getTimeLine/" + userId)
       .then((res) => {
@@ -28,7 +28,7 @@ function TimeLine() {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [navigate]);
 
   if (loading) return <Loading />;
 
@@ -38,8 +38,8 @@ function TimeLine() {
         <img src={logo} alt="" height="90%" />
       </div>
       <div className="page">
-        {TimeLine.map((el) => {
-          return <PostCard el={el.post} user={el.userData} />;
+        {TimeLine.map((el, index) => {
+          return <PostCard key={index} el={el.post} user={el.userData} />;
         })}
       </div>
     </div>
