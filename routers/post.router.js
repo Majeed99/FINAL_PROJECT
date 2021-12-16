@@ -3,17 +3,13 @@ let users = require("../models/user.model");
 
 // GET ALL POSTS OF FRIENDS IN TIMELINE
 router.get("/getPosts/:id", async (req, res) => {
-  // console.log(req.params.id);
   const u = await users.findById(req.params.id);
   const posts = u.posts;
-  // console.log(posts);
   res.json(posts);
-  // res.json(u.posts);
 });
 
 // ADD NEW POST TO userID
 router.post("/addPost/:id", async (req, res) => {
-  // const { id, text, location, locationId } = req.body;
   const id = req.params.id;
   const u = await users.findByIdAndUpdate(id, {
     $push: {
@@ -71,4 +67,36 @@ router.get("/getTimeLine/:id", async (req, res) => {
     res.json(SortedPosts);
   });
 });
+
+router.get("/getPostInfo/:userId/:postId", async (req, res) => {
+  const u = await users.findById(req.params.userId);
+  const postInfo = u.posts.find((e) => {
+    return e._id.toString() == req.params.postId;
+  });
+  const result = { post: postInfo, userData: u };
+  res.json(result);
+});
+
+router.post("/addComment", async (req, res) => {
+  const { userId, postId, commentText, senderId } = req.body;
+  const senderData = await users.findById(senderId);
+
+  const u = await users.findById(userId);
+  const postInfo = u.posts.find((e) => {
+    return e._id.toString() == postId;
+  });
+
+  let commentsArray = postInfo.comments;
+  commentsArray.push({
+    userId: senderId,
+    userName: senderData.userName,
+    comment: commentText,
+  });
+  postInfo.comments = commentsArray;
+  u.posts = postInfo;
+  u.save();
+
+  res.json(commentsArray);
+});
+
 module.exports = router;

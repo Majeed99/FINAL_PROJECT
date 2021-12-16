@@ -58,17 +58,19 @@ function PostCard(props) {
         {el.photo ? (
           <img className="post__Image" src={el.photo} alt="img" />
         ) : null}
-        <p
-          className="post_view_comments"
-          onClick={() => {
-            navigate("/post");
-          }}
-        >
-          {" "}
-          View all comments
-        </p>
+        {window.location.pathname.startsWith("/post") ? null : (
+          <p
+            className="post_view_comments"
+            onClick={() => {
+              navigate("/post/" + user._id + "/" + el._id);
+            }}
+          >
+            {" "}
+            View all comments
+          </p>
+        )}
         <p className="post__time"> since {calcTime(el.createdAt)}</p>
-        <hr />{" "}
+        <hr />
       </div>
     </div>
   );

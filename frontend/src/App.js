@@ -44,7 +44,7 @@ function App() {
               <Route exact path="/User/:id" element={<User />} />
               <Route exact path="/Notification" element={<Notification />} />
               <Route exact path="/NewPost" element={<NewPost />} />
-              <Route exact path="/Post" element={<Post />} />
+              <Route exact path="/Post/:userId/:postId" element={<Post />} />
             </Routes>
           </div>
         </BrowserRouter>
