@@ -57,9 +57,6 @@
 .photo_icon {
   font-size: 25px;
 }
-input.upload__photo {
-  z-index: -5;
-}
 
 .file_and_post {
   display: flex;

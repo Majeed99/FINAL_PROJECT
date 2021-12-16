@@ -33,7 +33,8 @@ function PostCard(props) {
       </div>
 
       <div className="post_Card_info">
-        {user._id === userId && window.location.pathname === "/profile" ? (
+        {user._id === userId &&
+        window.location.pathname.toLowerCase() === "/profile" ? (
           <button
             className="remove_post"
             onClick={(e) => {
@@ -54,7 +55,7 @@ function PostCard(props) {
           {user.userName}
         </p>
         <b>At {el.location}</b>
-        <p> {el.text}</p>
+        {el.text ? <p> {el.text}</p> : null}
         {el.photo ? (
           <img className="post__Image" src={el.photo} alt="img" />
         ) : null}

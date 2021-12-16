@@ -18,13 +18,12 @@ function NewPost() {
   const [LocationsArea, setLocationsArea] = useState([]);
   const location = useGeoLocation();
 
- 
   useEffect(() => {
-     const cookieCheck = document.cookie;
-     if (cookieCheck === "") {
-       navigate("/signin");
-       return;
-     }
+    const cookieCheck = document.cookie;
+    if (cookieCheck === "") {
+      navigate("/signin");
+      return;
+    }
     if (location.loaded) {
       if (location.error)
         setErrorMessage("Please allow permission of location");
@@ -65,7 +64,6 @@ function NewPost() {
   }, [Coordinates]);
 
   function send() {
-    console.log(PostData);
     //   CHECK OF LOCATION CHOOSE
 
     if (!PostData.location) return;
