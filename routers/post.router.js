@@ -92,7 +92,11 @@ router.post("/addComment", async (req, res) => {
     comment: commentText,
   });
   postInfo.comments = commentsArray;
-  u.posts = postInfo;
+  const newArr = u.posts.map((e) => {
+    if (e._id.toString() == postId) e = postInfo;
+    return e;
+  });
+  u.posts = newArr;
   u.save();
   res.json(commentsArray);
 });
@@ -110,9 +114,15 @@ router.delete("/DeleteComment", async (req, res) => {
     return e._id.toString() != commentId;
   });
   postInfo.comments = commentsArray;
-  u.posts = postInfo;
+  const newArr = u.posts.map((e) => {
+    if (e._id.toString() == postId) e = postInfo;
+    return e;
+  });
+
+  u.posts = newArr;
   u.save();
   res.json(commentsArray);
+  res.send();
 });
 
 module.exports = router;
