@@ -95,7 +95,24 @@ router.post("/addComment", async (req, res) => {
   postInfo.comments = commentsArray;
   u.posts = postInfo;
   u.save();
+  res.json(commentsArray);
+});
 
+router.delete("/DeleteComment", async (req, res) => {
+  const { userId, postId, commentId } = req.body;
+  console.log({ userId, postId, commentId });
+  const u = await users.findById(userId);
+  const postInfo = u.posts.find((e) => {
+    return e._id.toString() == postId;
+  });
+
+  let commentsArray = postInfo.comments;
+  commentsArray = commentsArray.filter((e) => {
+    return e._id.toString() != commentId;
+  });
+  postInfo.comments = commentsArray;
+  u.posts = postInfo;
+  u.save();
   res.json(commentsArray);
 });
 

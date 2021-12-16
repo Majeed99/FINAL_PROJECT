@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Loading from "../components/Loading";
 import axios from "axios";
+import { MdDeleteForever } from "react-icons/md";
+import calcTime from "../functions/calcTime";
 
 function Post() {
   const { userId, postId } = useParams();
@@ -25,6 +27,13 @@ function Post() {
     });
   }
 
+  function getUserId() {
+    let cookieCheck = document.cookie;
+    const token = cookieCheck.split("=")[1];
+    const userId = atob(token.split(".")[1]);
+    return userId;
+  }
+
   function sendComment() {
     const cookieCheck = document.cookie;
     const token = cookieCheck.split("=")[1];
@@ -42,6 +51,20 @@ function Post() {
       });
   }
 
+  function deleteComment(commentId) {
+    axios
+      .delete("/api/posts/DeleteComment", {
+        data: {
+          userId: PostInfo.userData._id,
+          postId: PostInfo.post._id,
+          commentId: commentId,
+        },
+      })
+      .then((res) => {
+        fetchData();
+      });
+  }
+
   if (loading) return <Loading />;
 
   return (
@@ -51,9 +74,23 @@ function Post() {
       <div className="comments_cover">
         {PostInfo.post.comments.map((el) => {
           return (
-            <div className="comment_cover">
-              <b>{el.userName}</b>
-              <p>{el.comment}</p>
+            <div>
+              <div className="comment_cover">
+                <b>{el.userName}</b>
+                <span>{el.comment}</span>
+                {el.userId === getUserId() ? (
+                  <button
+                    className="delete_comment"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      deleteComment(el._id);
+                    }}
+                  >
+                    <MdDeleteForever fill="red" />
+                  </button>
+                ) : null}
+              </div>
+              <div className="comment_time">{calcTime(el.createdAt)}</div>
             </div>
           );
         })}

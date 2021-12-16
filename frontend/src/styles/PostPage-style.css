@@ -5,6 +5,7 @@
 }
 .form_add_comment {
   margin: 0;
+  margin-top: 2%;
   width: 100%;
 }
 .insert_comment_input {
@@ -31,8 +32,31 @@
 .comment_cover {
   display: flex;
   padding: 1%;
+  min-height: 20px;
 }
-.comment_cover p {
+
+.comment_cover span {
+  /* display: flex;
+  flex-wrap: wrap; */
+  display: block;
+  word-wrap: break-word;
+  width: 65%;
+  height: max-content;
   margin: 0;
-  padding-left: 10px;
+  padding-left: 2%;
+}
+.delete_comment {
+  position: absolute;
+  right: 1%;
+  padding: 0;
+  font-size: 20px;
+  cursor: pointer;
+  background-color: transparent;
+  border: 0;
+}
+.comment_time {
+  color: gray;
+  font-size: 13px;
+  margin: 0.2em 0;
+  padding: 0 1%;
 }
