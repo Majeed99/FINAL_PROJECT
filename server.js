@@ -7,10 +7,6 @@ const path = require("path");
 app.use(cors());
 app.use(express.json());
 
-app.get("*", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "frontend/build/index.html"));
-});
-
 // ROUTER REQUIRE
 const usersRouter = require("./routers/user.router");
 const postRouter = require("./routers/post.router");
@@ -32,4 +28,7 @@ app.use("/api/users", usersRouter);
 app.use("/api/posts", postRouter);
 app.use("/api/friends", friendsRouter);
 
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "frontend/build/index.html"));
+});
 app.listen(port);
