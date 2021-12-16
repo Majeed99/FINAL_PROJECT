@@ -4,6 +4,7 @@ import Loading from "../components/Loading";
 import "../styles/SignUp-style.css";
 import UploadImage from "../functions/UploadImage";
 import { useNavigate } from "react-router-dom";
+import { MdAddPhotoAlternate, MdPlace } from "react-icons/md";
 
 function EditProfile() {
   let token, userId;
@@ -42,7 +43,7 @@ function EditProfile() {
 
   if (loading) return <Loading />;
   return (
-    <div className="page">
+    <div className="edit-page">
       <form
         className="form__signup"
         onSubmit={(e) => {
@@ -98,25 +99,37 @@ function EditProfile() {
         <br />
         <label>Avatar</label>
         <img className="avatar__edit" src={UserData.avatar} alt="" />
-        <input
-          type="file"
-          onChange={async (e) => {
-            const imageURL = await UploadImage(e.target.files[0]);
-            UserData.avatar = imageURL;
-            setUserData({ ...UserData });
-          }}
-        />
+        <br />
+        <div class="btn-file">
+          <MdAddPhotoAlternate className="photo_icon" />
+          <input
+            type="file"
+            className="upload__photo"
+            onChange={async (e) => {
+              const imageURL = await UploadImage(e.target.files[0]);
+              UserData.avatar = imageURL;
+              setUserData({ ...UserData });
+            }}
+          />
+        </div>
+
         <br />
         <label>Header</label>
         <img className="header__edit" src={UserData.header} alt="" />
-        <input
-          type="file"
-          onChange={async (e) => {
-            const imageURL = await UploadImage(e.target.files[0]);
-            UserData.header = imageURL;
-            setUserData({ ...UserData });
-          }}
-        />
+        <br />
+        <div class="btn-file">
+          <MdAddPhotoAlternate className="photo_icon" />
+          <input
+            type="file"
+            className="upload__photo"
+            onChange={async (e) => {
+              const imageURL = await UploadImage(e.target.files[0]);
+              UserData.header = imageURL;
+              setUserData({ ...UserData });
+            }}
+          />
+        </div>
+
         <br />
         <button className="edit_profile_button" type="submit">
           Update

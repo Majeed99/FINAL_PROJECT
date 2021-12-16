@@ -12,6 +12,7 @@
   /* background-color: #0b3c4a; */
   background-image: linear-gradient(#155e72, #0b3c4a);
   border-radius: 0;
+  z-index: 10;
 }
 .navBar a {
   display: flex;
@@ -38,7 +39,7 @@
   padding: 15px;
   position: fixed;
   top: calc(100vh - 100px);
-  z-index: 1;
+  z-index: 11;
   border-radius: 50px;
   background-color: rgb(148, 148, 148);
   box-shadow: 0 0 5px rgba(85, 85, 85, 0.5);
@@ -84,7 +85,7 @@
     position: fixed;
     top: auto !important;
     left: calc(7% - 27px);
-    z-index: 1;
+    z-index: 11;
     border-radius: 50px;
     /* background-color: rgb(167, 167, 167); */
     box-shadow: 0 0 5px rgba(85, 85, 85, 0.5);

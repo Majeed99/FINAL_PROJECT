@@ -22,7 +22,6 @@ router.post("/addPost/:id", async (req, res) => {
 // DELETE POSTS BY userID AND postID
 router.delete("/deletePost", async (req, res) => {
   const { id, postId } = req.body;
-  console.log(req.body);
   const u = await users.findById(id);
   const posts = u.posts;
   const newPosts = posts.filter((e) => {

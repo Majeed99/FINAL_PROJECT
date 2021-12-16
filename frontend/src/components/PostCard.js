@@ -53,7 +53,7 @@ function PostCard(props) {
         >
           {user.userName}
         </p>
-        <b>{el.location}</b>
+        <b>At {el.location}</b>
         <p> {el.text}</p>
         {el.photo ? (
           <img className="post__Image" src={el.photo} alt="img" />

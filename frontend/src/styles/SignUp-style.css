@@ -108,6 +108,9 @@
     width: 40%;
   }
 }
+.edit-page {
+  padding: 2% 1% 5% 1%;
+}
 @media screen and (min-width: 1050px) {
   .page__signup {
     min-height: 100vh;

@@ -68,7 +68,7 @@ function Post() {
   if (loading) return <Loading />;
 
   return (
-    <div>
+    <div className="page">
       <PostCard el={PostInfo.post} user={PostInfo.userData} />
       {/****************** COMMENTS **********************/}
       <div className="comments_cover">
