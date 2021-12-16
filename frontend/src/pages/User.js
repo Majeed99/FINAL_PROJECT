@@ -69,6 +69,9 @@ function User() {
   }
 
   async function unfriendRequest() {
+    const cookieCheck = document.cookie;
+    token = cookieCheck.split("=")[1];
+    userId = atob(token.split(".")[1]);
     const data = await { userId: userId, friendId: id };
     axios
       .delete("/api/friends/unfriend", { data: data })
