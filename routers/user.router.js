@@ -67,7 +67,6 @@ router.post("/signIn", async (req, res) => {
   let u = await users.findOne({ email: email.toLowerCase() }).lean();
   if (u == null) res.send("invalid email/password");
   if (await bcrypt.compare(password, u.password)) {
-    console.log(u._id);
     let Token = jwt.sign(u._id.toJSON(), JWT_SECRET);
     res.cookie("jwt", Token);
     res.json(Token);
