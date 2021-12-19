@@ -1,7 +1,7 @@
 import "../styles/NewPost-style.css";
 import { MdAddPhotoAlternate, MdPlace } from "react-icons/md";
 import { BiSearch } from "react-icons/bi";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import UploadImage from "../functions/UploadImage";
 import useGeoLocation from "../components/useGeoLocation";
 import Loading from "../components/Loading";
@@ -9,6 +9,8 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 function NewPost() {
+  const [, updateState] = useState();
+  const forceUpdate = useCallback(() => updateState({}), []);
   const navigate = useNavigate();
   const [loading, setloading] = useState(true);
   const [PostData, setPostData] = useState({});
@@ -24,7 +26,9 @@ function NewPost() {
   // const [location, setLocation] = useState({});
   async function getPosition() {
     if (navigator.geolocation) {
-      await navigator.geolocation.getCurrentPosition(showPosition);
+      setTimeout(() => {
+        navigator.geolocation.getCurrentPosition(showPosition);
+      }, 3000);
     } else {
       setErrorMessage("Please allow permission of location");
       console.log("Geolocation is not supported by this browser.");
