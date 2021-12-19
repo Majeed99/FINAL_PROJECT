@@ -8,6 +8,7 @@ import Loading from "../components/Loading";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
+// window.location.reload();
 function NewPost() {
   // const [, updateState] = useState();
   // const forceUpdate = useCallback(() => updateState({}), []);
@@ -31,7 +32,7 @@ function NewPost() {
       setErrorMessage("Please allow permission of location");
       console.log("Geolocation is not supported by this browser.");
     }
-    function fetchData() {}
+
     function showPosition(position) {
       setCoordinates({
         lat: position.coords.latitude,
@@ -64,6 +65,13 @@ function NewPost() {
     }
   }
   useEffect(() => {
+    const reloadCount = sessionStorage.getItem("reloadCount");
+    if (reloadCount < 2) {
+      sessionStorage.setItem("reloadCount", String(reloadCount + 1));
+      window.location.reload();
+    } else {
+      sessionStorage.removeItem("reloadCount");
+    }
     getPosition();
 
     //---------
@@ -73,6 +81,7 @@ function NewPost() {
       return;
     }
   }, []);
+  const xx = 5;
 
   function send() {
     //   CHECK OF LOCATION CHOOSE
