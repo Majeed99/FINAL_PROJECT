@@ -1,4 +1,6 @@
 import "./App.css";
+import "bootstrap/dist/css/bootstrap.css";
+
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useState } from "react";
 import userStatus from "./components/userStatus";
@@ -15,6 +17,8 @@ import User from "./pages/User";
 import Notification from "./pages/Notification";
 import NewPost from "./pages/NewPost";
 import Post from "./pages/Post";
+import AdminSignIn from "./pages/AdminSignIn";
+import Admin from "./pages/Admin";
 import AOS from "aos";
 import { useEffect } from "react";
 import "aos/dist/aos.css";
@@ -45,6 +49,9 @@ function App() {
               <Route exact path="/Notification" element={<Notification />} />
               <Route exact path="/NewPost" element={<NewPost />} />
               <Route exact path="/Post/:userId/:postId" element={<Post />} />
+              {/*Admin Pages */}
+              <Route exact path="/adminSignIn" element={<AdminSignIn />} />
+              <Route exact path="/admin" element={<Admin />} />
             </Routes>
           </div>
         </BrowserRouter>

@@ -15,6 +15,16 @@ router.get("/", (req, res) => {
       if (err) throw err;
     });
 });
+router.delete("/deleteUser/:id", (req, res) => {
+  users
+    .findByIdAndDelete(req.params.id)
+    .then((data) => {
+      res.json(data);
+    })
+    .catch((err) => {
+      if (err) throw err;
+    });
+});
 
 // GET USER DATA
 router.get("/getUser/:id", (req, res) => {

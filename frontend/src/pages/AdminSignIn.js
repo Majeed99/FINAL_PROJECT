@@ -1,25 +1,25 @@
-import "../styles/SignUp-style.css";
-import axios from "axios";
-import userStatus from "../components/userStatus";
 import { useState, useContext } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import "../styles/SignUp-style.css";
+import userStatus from "../components/userStatus";
+import axios from "axios";
 
-function SignIn() {
-  const navigate = useNavigate();
+function AdminSignIn() {
   const [UserData, setUserData] = useState({});
   const [errorMessage, setErrorMessage] = useState("");
   const { auth, setAuth } = useContext(userStatus);
+  const navigate = useNavigate();
 
   function checkAndSignin() {
     axios
-      .post("api/users/signIn", UserData)
+      .post("api/admins/signIn", UserData)
       .then((res) => {
         if (res.data === "invalid email/password") {
           setErrorMessage(res.data);
           return;
         }
-        setAuth("user");
-        navigate("/timeLine");
+        setAuth("admin");
+        navigate("/admin");
       })
       .catch((error) => {
         console.log(error);
@@ -35,7 +35,7 @@ function SignIn() {
           checkAndSignin();
         }}
       >
-        <h3 className="form__title"> Sign In </h3>
+        <h3 className="form__title"> ADMIN Sign In </h3>
         {errorMessage !== "" ? (
           <div className="errorMessage">{errorMessage}</div>
         ) : null}
@@ -60,9 +60,6 @@ function SignIn() {
           }}
           required
         />
-        <Link className="LinkToAdmin" to="/adminSignIn">
-          Admin Sign In
-        </Link>
 
         <button className="form__submit" type="submit">
           {" "}
@@ -73,4 +70,4 @@ function SignIn() {
   );
 }
 
-export default SignIn;
+export default AdminSignIn;

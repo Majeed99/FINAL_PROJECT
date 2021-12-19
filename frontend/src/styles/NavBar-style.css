@@ -32,17 +32,18 @@
 .Link__Icons path {
   stroke: rgb(196, 0, 0) !important;
 }
-.navBar .active {
-  /* background-color: rgba(192, 0, 0, 0.808); */
+.navBar__links {
 }
 .navBar .active .Link__Icons {
-  padding: 15px;
+  padding: 5px;
   position: fixed;
-  top: calc(100vh - 100px);
+  bottom: 45px;
   z-index: 11;
   border-radius: 50px;
   background-color: rgb(148, 148, 148);
   box-shadow: 0 0 5px rgba(85, 85, 85, 0.5);
+  font-size: 50px;
+  color: white;
 }
 .navBar .navBar__text {
   margin: 0;
@@ -76,14 +77,14 @@
     font-size: 15px;
   }
   .Link__Icons {
-    font-size: 25px;
-    padding-right: 10px;
+    font-size: 30px;
+    /* padding-right: 10px; */
   }
   .navBar .active .Link__Icons {
     transition: 0.5s;
-    padding: 15px;
+    padding: 5px;
     position: fixed;
-    top: auto !important;
+    bottom: auto !important;
     left: calc(7% - 27px);
     z-index: 11;
     border-radius: 50px;

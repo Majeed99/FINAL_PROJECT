@@ -111,6 +111,13 @@
 .edit-page {
   padding: 2% 1% 5% 1%;
 }
+.LinkToAdmin {
+  margin-top: 25px;
+  color: #062c50;
+  /* text-decoration: none; */
+  margin-left: auto;
+  font-weight: 500;
+}
 @media screen and (min-width: 1050px) {
   .page__signup {
     min-height: 100vh;

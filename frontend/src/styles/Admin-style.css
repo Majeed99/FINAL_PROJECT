@@ -1,0 +1,45 @@
+    .adminTable {
+    margin-top: 30px;
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    border-collapse: collapse;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    width: 80vw;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+    border: 1px gray solid;
+    }
+    .adminTable th {
+    height: 25px;
+    text-align: center;
+    background-color: #0e4858;
+    color: #ffffff;
+    }
+    .adminTable td {
+    padding: 5px 10px;
+    border-left: 1px gray solid;
+    border-right: 1px gray solid;
+    }
+    .adminTable tr:hover {
+    background-color: lightgrey;
+    }
+    .deleteUserBtn {
+    width: 70px;
+    cursor: pointer;
+    border: 0;
+    border-radius: 50px;
+    background-color: #880f0f;
+    color: white;
+    padding: 5px 0;
+    }
+    .confirm_delete {
+    width: 100%;
+    cursor: pointer;
+    border: 0;
+    border-radius: 50px;
+    background-color: #880f0f;
+    color: white;
+    padding: 5px 0;
+    }

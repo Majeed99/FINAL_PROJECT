@@ -12,7 +12,8 @@
   z-index: 5;
   width: max-content;
   /* color: rgb(21, 128, 228); */
-  background: linear-gradient(180deg, rgb(3, 140, 231), rgb(16, 88, 136));
+  /* background: linear-gradient(180deg, rgb(3, 140, 231), rgb(16, 88, 136)); */
+  background: linear-gradient(180deg, rgb(8, 133, 155), rgb(16, 88, 136));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   /* text-shadow: 0 0 2px rgb(106, 0, 177); */
@@ -49,8 +50,64 @@
   top: -2vh;
   left: -10vw;
 }
-.about_us{
+.title_home {
+  margin: auto;
+  padding: 5px 0;
+  width: max-content;
+  background: linear-gradient(180deg, rgb(8, 133, 155), rgb(16, 88, 136));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.content_cover {
+  padding: 20px 0;
+}
+.about_us {
   display: grid;
-  grid-template-columns: 1fr 1fr 
-  ;
+  grid-template-columns: 1fr 1fr;
+}
+.about_us div {
+  padding: 5% 0;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.about_us div p {
+  font-size: 17px;
+  font-weight: 600;
+  color: rgb(7, 85, 99);
+
+  text-shadow: 0 0 5px rgb(196, 196, 196);
+}
+.iconsHome {
+  font-size: 40px;
+  border: 2px solid;
+  border-radius: 500px;
+  padding: 5px;
+  color: white;
+  border: 0;
+  background-image: linear-gradient(rgb(25, 108, 160), rgb(8, 38, 56));
+
+  box-shadow: 0 0 5px rgb(124, 124, 124);
+}
+
+@media screen and (min-width: 1050px) {
+  .about_us div p {
+    font-size: 25px;
+    font-weight: 600;
+    color: rgb(7, 85, 99);
+    text-shadow: 0 0 5px rgb(196, 196, 196);
+  }
+  .iconsHome {
+    font-size: 60px;
+    border: 2px solid;
+    border-radius: 500px;
+    padding: 5px;
+    color: white;
+    border: 0;
+    background-color: rgb(15, 72, 105);
+    box-shadow: 0 0 5px rgb(124, 124, 124);
+  }
 }

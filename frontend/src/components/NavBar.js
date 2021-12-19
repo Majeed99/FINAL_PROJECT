@@ -11,21 +11,23 @@ import { MdTimeline } from "react-icons/md";
 import { GrLogout } from "react-icons/gr";
 import { FaUser } from "react-icons/fa";
 import { BiSearchAlt } from "react-icons/bi";
-import { FaPlus } from "react-icons/fa";
+import { BiPlus } from "react-icons/bi";
 
 function NavBar() {
   const navigate = useNavigate();
   const { auth, setAuth } = useContext(userStatus);
 
   const token = document.cookie.split("jwt=")[1];
+  const tokenAdmin = document.cookie.split("jwtAdmin=")[1];
   if (token) {
-    setAuth(true);
-  } else setAuth(false);
+    setAuth("user");
+  } else if (tokenAdmin) setAuth("admin");
+  else setAuth("none");
 
   return (
     <div className="navBar">
       {/* PAGES FOR NOT REGISTER */}
-      {!auth ? (
+      {auth === "none" ? (
         <Link
           to="/"
           className="navBar__links"
@@ -38,7 +40,7 @@ function NavBar() {
           <p className="navBar__text">Home</p>
         </Link>
       ) : null}
-      {!auth ? (
+      {auth === "none" ? (
         <Link
           to="/signup"
           className="navBar__links"
@@ -51,7 +53,7 @@ function NavBar() {
           <p className="navBar__text">SignUp</p>
         </Link>
       ) : null}
-      {!auth ? (
+      {auth === "none" ? (
         <Link
           to="/signin"
           className="navBar__links "
@@ -65,7 +67,7 @@ function NavBar() {
         </Link>
       ) : null}
       {/* PAGES FOR REGISTER */}
-      {auth ? (
+      {auth === "user" ? (
         <Link
           to="/timeline"
           className="navBar__links"
@@ -75,11 +77,11 @@ function NavBar() {
           }}
         >
           <MdTimeline className="Link__Icons" />
-          <p className="navBar__text active"> Time Line</p>
+          <p className="navBar__text "> Time Line</p>
         </Link>
       ) : null}
 
-      {auth ? (
+      {auth === "user" ? (
         <Link
           to="/Search"
           className="navBar__links"
@@ -93,7 +95,7 @@ function NavBar() {
         </Link>
       ) : null}
 
-      {auth ? (
+      {auth === "user" ? (
         <Link
           to="/NewPost"
           className="navBar__links active"
@@ -102,12 +104,12 @@ function NavBar() {
             navigate("/NewPost");
           }}
         >
-          <FaPlus className="Link__Icons" />
+          <BiPlus className="Link__Icons" fill="white" />
           <p className="navBar__text"> </p>
         </Link>
       ) : null}
 
-      {auth ? (
+      {auth === "user" ? (
         <Link
           to="/Profile"
           className="navBar__links"
@@ -121,7 +123,7 @@ function NavBar() {
         </Link>
       ) : null}
 
-      {auth ? (
+      {auth === "user" ? (
         <Link
           to="/"
           className="navBar__links"
@@ -132,7 +134,43 @@ function NavBar() {
               .catch((err) => {
                 console.log(err);
               });
-            setAuth(false);
+            setAuth("none");
+          }}
+        >
+          <GrLogout className="Link__Icons" fill="red" />
+          <p className="navBar__text" style={{ color: "red" }}>
+            {" "}
+            Sign Out
+          </p>
+        </Link>
+      ) : null}
+
+      {auth === "admin" ? (
+        <Link
+          to="/admin"
+          className="navBar__links"
+          onClick={(e) => {
+            e.preventDefault();
+            navigate("/admin");
+          }}
+        >
+          <FaUser className="Link__Icons" />
+          <p className="navBar__text "> Admin</p>
+        </Link>
+      ) : null}
+
+      {auth === "admin" ? (
+        <Link
+          to="/"
+          className="navBar__links"
+          onClick={async () => {
+            await axios
+              .get("api/admins/signOut")
+              .then((res) => {})
+              .catch((err) => {
+                console.log(err);
+              });
+            setAuth("none");
           }}
         >
           <GrLogout className="Link__Icons" fill="red" />
