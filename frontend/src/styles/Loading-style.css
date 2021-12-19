@@ -10,7 +10,7 @@
 }
 .TEXT__LOADING {
   margin-top: 5vh;
-  margin-left: 2%;
+  /* margin-left: 2%; */
   text-align: center;
   font-weight: bold;
   color: #0b3c4a;
@@ -54,14 +54,14 @@
   -webkit-transform: rotate(-46deg);
   -moz-transform: rotate(-46deg);
   transform: rotate(-46deg);
-  left: 7vh;
+  left: 30%;
 }
 
 .location_indicator:after {
   width: 40px;
   height: 15px;
   border-radius: 100%;
-  left: 7vh;
+  left: 30%;
   background-color: #0b3c4a;
   top: 10vh;
   z-index: 0;
