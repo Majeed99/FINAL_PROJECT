@@ -4,10 +4,12 @@ import { FaUsers, FaCommentDots } from "react-icons/fa";
 import { MdTimeline } from "react-icons/md";
 import { RiUserLocationLine } from "react-icons/ri";
 import { AiOutlineComment } from "react-icons/ai";
+import { BsGithub } from "react-icons/bs";
+import { AiFillLinkedin } from "react-icons/ai";
 
 function HomePage() {
   return (
-    <div className="page">
+    <div className="">
       <div className="Home__info">
         <div className="text__cover">
           <h1 data-aos="fade-up" data-aos-duration="2000">
@@ -38,10 +40,10 @@ function HomePage() {
           />
         </div>
       </div>
-      <hr />
+
       <div className="content_cover">
         <h1 className="title_home" data-aos="fade-up" data-aos-duration="2000">
-          About Us
+          Our Features
         </h1>
 
         <div className="about_us">
@@ -51,7 +53,7 @@ function HomePage() {
           </div>
           <div data-aos="zoom-in" data-aos-duration="2000">
             <MdTimeline className="iconsHome" />
-            <p>View Your Timeline</p>
+            <p>View Timeline</p>
           </div>
           <div data-aos="zoom-in" data-aos-duration="2000">
             <RiUserLocationLine className="iconsHome" />
@@ -63,12 +65,37 @@ function HomePage() {
           </div>
         </div>
       </div>
-      <hr />
 
-      <h1 className="title_home" data-aos="fade-up" data-aos-duration="2000">
-        Contact Us
-      </h1>
-      <div></div>
+      <div className="content_cover">
+        <h1 className="title_home" data-aos="fade-up" data-aos-duration="2000">
+          Contact Us
+        </h1>
+        <div>
+          <p
+            className="title_contactUs"
+            data-aos="zoom-in"
+            data-aos-duration="2000"
+          >
+            For any bugs or questions ,Feel free to contact us on:
+          </p>
+          <div>
+            <table className="contactTable">
+              <tr data-aos="zoom-out" data-aos-duration="2000">
+                <a href="https://github.com/Majeed99">
+                  <BsGithub className="contact_icon" />
+                  Majeed99
+                </a>
+              </tr>
+              <tr data-aos="zoom-out" data-aos-duration="2000">
+                <a href="https://www.linkedin.com/in/abdulmajeed-alduaifi/">
+                  <AiFillLinkedin className="contact_icon" />
+                  Abdulmajeed Alduaifi
+                </a>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

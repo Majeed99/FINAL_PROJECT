@@ -57,6 +57,7 @@
   background: linear-gradient(180deg, rgb(8, 133, 155), rgb(16, 88, 136));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  border-bottom: 2.5px solid #0c7293;
 }
 
 .content_cover {
@@ -89,7 +90,6 @@
   color: white;
   border: 0;
   background-image: linear-gradient(rgb(25, 108, 160), rgb(8, 38, 56));
-
   box-shadow: 0 0 5px rgb(124, 124, 124);
 }
 
@@ -110,4 +110,48 @@
     background-color: rgb(15, 72, 105);
     box-shadow: 0 0 5px rgb(124, 124, 124);
   }
+}
+
+.title_contactUs {
+  width: auto;
+  text-align: center;
+  margin: 5px auto;
+  font-size: 23px;
+  font-weight: 500;
+  color: rgb(37, 117, 131);
+  text-shadow: 0 0 3px rgb(133, 133, 133);
+  /* background: linear-gradient(180deg, rgb(8 133 155), rgb(16 88 136));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; */
+  overflow-wrap: break-word;
+}
+
+.contactTable {
+  margin: auto;
+  margin-bottom: 10vh;
+  /* width: 100%; */
+}
+.contactTable tr {
+  height: 40px;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 15px;
+  display: flex;
+  font-size: 18px;
+  font-weight: 500;
+}
+.contactTable tr:hover {
+  background-color: rgb(230, 230, 230);
+  transition: 0.5s;
+  /* font-size: 110%; */
+}
+.contactTable tr a {
+  text-decoration: none;
+  color: rgb(75, 75, 75);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.contact_icon {
+  margin-right: 5px;
 }
