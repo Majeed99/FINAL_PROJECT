@@ -9,8 +9,8 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 function NewPost() {
-  const [, updateState] = useState();
-  const forceUpdate = useCallback(() => updateState({}), []);
+  // const [, updateState] = useState();
+  // const forceUpdate = useCallback(() => updateState({}), []);
   const navigate = useNavigate();
   const [loading, setloading] = useState(true);
   const [PostData, setPostData] = useState({});
@@ -26,22 +26,46 @@ function NewPost() {
   // const [location, setLocation] = useState({});
   async function getPosition() {
     if (navigator.geolocation) {
-      setTimeout(() => {
-        navigator.geolocation.getCurrentPosition(showPosition);
-      }, 3000);
+      navigator.geolocation.getCurrentPosition(showPosition);
     } else {
       setErrorMessage("Please allow permission of location");
       console.log("Geolocation is not supported by this browser.");
     }
+    function fetchData() {}
     function showPosition(position) {
       setCoordinates({
         lat: position.coords.latitude,
         lng: position.coords.longitude,
       });
+      const options = {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          Authorization: "fsq3+8Wp0XwCLQpJH5TkN0okpqSHgoutxIIWgBbE2ibudvE=",
+        },
+      };
+      //api.foursquare.com/v3/places/search?query=%D8%A7%D9%84%D8%A7%D8%AA%D8%AD%D8%A7%D8%AF&ll=24.8649609%2C46.7188515&sort=RELEVANCE&limit=50
+      fetch(
+        `https://api.foursquare.com/v3/places/nearby?ll=${position.coords.latitude}%2C${position.coords.longitude}&limit=30`,
+        options
+      )
+        .then((response) => response.json())
+        .then((response) => {
+          let arr = response.results;
+          arr = arr.sort(function (a, b) {
+            return a.distance - b.distance;
+          });
+          setLocationsArea(arr);
+          if (response.results) setloading(false);
+
+          // console.log(arr);
+        })
+        .catch((err) => console.error(err));
     }
   }
   useEffect(() => {
     getPosition();
+
     //---------
     const cookieCheck = document.cookie;
     if (cookieCheck === "") {
@@ -49,33 +73,6 @@ function NewPost() {
       return;
     }
   }, []);
-
-  useEffect(() => {
-    const options = {
-      method: "GET",
-      headers: {
-        Accept: "application/json",
-        Authorization: "fsq3+8Wp0XwCLQpJH5TkN0okpqSHgoutxIIWgBbE2ibudvE=",
-      },
-    };
-    //api.foursquare.com/v3/places/search?query=%D8%A7%D9%84%D8%A7%D8%AA%D8%AD%D8%A7%D8%AF&ll=24.8649609%2C46.7188515&sort=RELEVANCE&limit=50
-    fetch(
-      `https://api.foursquare.com/v3/places/nearby?ll=${Coordinates.lat}%2C${Coordinates.lng}&limit=30`,
-      options
-    )
-      .then((response) => response.json())
-      .then((response) => {
-        let arr = response.results;
-        arr = arr.sort(function (a, b) {
-          return a.distance - b.distance;
-        });
-        setLocationsArea(arr);
-        if (response.results) setloading(false);
-
-        // console.log(arr);
-      })
-      .catch((err) => console.error(err));
-  }, [Coordinates]);
 
   function send() {
     //   CHECK OF LOCATION CHOOSE
