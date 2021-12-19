@@ -20,25 +20,31 @@ function NewPost() {
   const [Coordinates, setCoordinates] = useState({});
   const [LocationsArea, setLocationsArea] = useState([]);
   const [LocationsAreaForSearch, setLocationsAreaForSearch] = useState([]);
-  const location = useGeoLocation();
-
+  // const location = useGeoLocation();
+  // const [location, setLocation] = useState({});
+  async function getPosition() {
+    if (navigator.geolocation) {
+      await navigator.geolocation.getCurrentPosition(showPosition);
+    } else {
+      setErrorMessage("Please allow permission of location");
+      console.log("Geolocation is not supported by this browser.");
+    }
+    function showPosition(position) {
+      setCoordinates({
+        lat: position.coords.latitude,
+        lng: position.coords.longitude,
+      });
+    }
+  }
   useEffect(() => {
+    getPosition();
+    //---------
     const cookieCheck = document.cookie;
     if (cookieCheck === "") {
       navigate("/signin");
       return;
     }
-    if (location.loaded) {
-      if (location.error)
-        setErrorMessage("Please allow permission of location");
-      else {
-        setErrorMessage("");
-        setCoordinates(location.coordinates);
-
-        console.log(location.coordinates);
-      }
-    }
-  }, [location]);
+  }, []);
 
   useEffect(() => {
     const options = {
