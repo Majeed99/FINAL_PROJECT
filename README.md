@@ -39,14 +39,14 @@
 | `/Profile`            | Profile        | user only   | Edits a exit points                                     |
 | `/Friends`            | Friends        | user only   | see all friends                                         |
 | `/EditProfile`        | EditProfile    | user only   | Edit user profile                                       |
-| /Search               | Search         | user only   | Search for any user                                     |
-| /User/:id             | User           | user only   | view user profile                                       |
-| /Notification         | Notification   | user only   | get any requests                                        |
-| /NewPost              | NewPost        | user only   | add new post                                            |
-| /Post/:userId/:postId | Post           | user only   | show post details with comments and can add new comment |
-| /Place/:id            | Place          | user only   | see more information of the places                      |
-| /adminSignIn          | AdminSignIn    | admin only  | signin for admin                                        |
-| /admin                | Admin          | admin only  | admin page witch can delete any user                    |
+| `/Search`               | Search         | user only   | Search for any user                                     |
+| `/User/:id`             | User           | user only   | view user profile                                       |
+| `/Notification`         | Notification   | user only   | get any requests                                        |
+| `/NewPost`              | NewPost        | user only   | add new post                                            |
+| `/Post/:userId/:postId` | Post           | user only   | show post details with comments and can add new comment |
+| `/Place/:id`            | Place          | user only   | see more information of the places                      |
+| `/adminSignIn`          | AdminSignIn    | admin only  | signin for admin                                        |
+| `/admin`               | Admin          | admin only  | admin page witch can delete any user                    |
 
 ## Components
 
