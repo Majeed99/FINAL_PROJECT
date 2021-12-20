@@ -18,20 +18,25 @@
   left: 0;
   height: calc(100vh - 70px);
   background-color: black;
+  z-index: 9;
 }
 .imageOpen img {
   object-fit: contain;
   height: calc(100vh - 70px);
   width: 100%;
+  z-index: 9;
 }
 @media screen and (min-width: 1050px) {
   .imageOpen img {
     object-fit: contain;
     height: 100vh;
     width: 100%;
+    /* z-index: 15; */
   }
 
   .imageOpen {
+    /* z-index: 15; */
+
     /* transition: 2s; */
     animation: zoomIn 0.3s linear;
     position: fixed;
