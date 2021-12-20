@@ -138,7 +138,10 @@ function NavBar() {
           }}
         >
           <GrLogout className="Link__Icons" fill="red" />
-          <p className="navBar__text" style={{ color: "red" }}>
+          <p
+            className="navBar__text"
+            style={{ color: "red", fontWeight: "700" }}
+          >
             {" "}
             Sign Out
           </p>
@@ -174,7 +177,10 @@ function NavBar() {
           }}
         >
           <GrLogout className="Link__Icons" fill="red" />
-          <p className="navBar__text" style={{ color: "red" }}>
+          <p
+            className="navBar__text"
+            style={{ color: "red", fontWeight: "700" }}
+          >
             {" "}
             Sign Out
           </p>
