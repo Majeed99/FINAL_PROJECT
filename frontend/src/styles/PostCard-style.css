@@ -11,3 +11,6 @@
 .REMOVE__ICON {
   font-size: 25px;
 }
+.placeBtn {
+  cursor: pointer;
+}

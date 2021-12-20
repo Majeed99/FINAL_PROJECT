@@ -3,8 +3,11 @@ import "../styles/PostCard-style.css";
 import axios from "axios";
 import { MdDeleteForever } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { AiOutlineClose } from "react-icons/ai";
 
 function PostCard(props) {
+  const [displayPhoto, setDisplayPhoto] = useState("none");
   const navigate = useNavigate();
   const el = props.el;
   const user = props.user;
@@ -54,10 +57,25 @@ function PostCard(props) {
         >
           {user.userName}
         </p>
-        <b>At {el.location}</b>
+        <b
+          className="placeBtn"
+          onClick={() => {
+            navigate("/Place/" + el.locationId);
+          }}
+        >
+          At {el.location}
+        </b>
         {el.text ? <p> {el.text}</p> : null}
         {el.photo ? (
-          <img className="post__Image" src={el.photo} alt="img" />
+          <img
+            className="post__Image"
+            src={el.photo}
+            alt="img"
+            onClick={(e) => {
+              e.preventDefault();
+              setDisplayPhoto("block");
+            }}
+          />
         ) : null}
         {window.location.pathname.startsWith("/post") ? null : (
           <p
@@ -72,6 +90,19 @@ function PostCard(props) {
         )}
         <p className="post__time"> since {calcTime(el.createdAt)}</p>
         <hr />
+      </div>
+      <div className="imageOpen" style={{ display: displayPhoto }}>
+        <button
+          className="closeBtn"
+          onClick={(e) => {
+            e.preventDefault();
+            setDisplayPhoto("none");
+          }}
+        >
+          {" "}
+          <AiOutlineClose />{" "}
+        </button>
+        <img src={el.photo} alt="" />
       </div>
     </div>
   );

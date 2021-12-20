@@ -17,6 +17,7 @@ import User from "./pages/User";
 import Notification from "./pages/Notification";
 import NewPost from "./pages/NewPost";
 import Post from "./pages/Post";
+import Place from "./pages/Place";
 import AdminSignIn from "./pages/AdminSignIn";
 import Admin from "./pages/Admin";
 import AOS from "aos";
@@ -49,6 +50,7 @@ function App() {
               <Route exact path="/Notification" element={<Notification />} />
               <Route exact path="/NewPost" element={<NewPost />} />
               <Route exact path="/Post/:userId/:postId" element={<Post />} />
+              <Route exact path="/Place/:id" element={<Place />} />
               {/*Admin Pages */}
               <Route exact path="/adminSignIn" element={<AdminSignIn />} />
               <Route exact path="/admin" element={<Admin />} />

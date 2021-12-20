@@ -5,3 +5,50 @@
   justify-content: center;
   align-items: center;
 }
+.imageOpen {
+  /* transition: 2s; */
+  animation: zoomIn 0.3s linear;
+  position: fixed;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  height: calc(100vh - 70px);
+  background-color: black;
+}
+.imageOpen img {
+  object-fit: contain;
+  height: calc(100vh - 70px);
+  width: 100%;
+}
+@media screen and (min-width: 1050px) {
+  .imageOpen img {
+    object-fit: contain;
+    height: 100vh;
+    width: 100%;
+  }
+
+  .imageOpen {
+    /* transition: 2s; */
+    animation: zoomIn 0.3s linear;
+    position: fixed;
+    width: 93%;
+    text-align: center;
+    top: 0;
+    left: 7%;
+    height: 100vh;
+    background-color: black;
+  }
+}
+
+@keyframes zoomIn {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}

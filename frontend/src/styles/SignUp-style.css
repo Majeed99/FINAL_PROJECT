@@ -86,10 +86,12 @@
   border-radius: 500px;
   width: 15vw;
   height: 15vw;
+  object-fit: cover;
 }
 .header__edit {
   width: 100%;
   height: 25vh;
+  object-fit: cover;
 }
 @media screen and (max-width: 550px) {
   .Check_package {

@@ -10,6 +10,7 @@ function TimeLine() {
   const navigate = useNavigate();
   const [TimeLine, setTimeLine] = useState([]);
   const [loading, setLoading] = useState(true);
+  
 
   useEffect(() => {
     const cookieCheck = document.cookie;
@@ -42,6 +43,7 @@ function TimeLine() {
           return <PostCard key={index} el={el.post} user={el.userData} />;
         })}
       </div>
+      
     </div>
   );
 }
