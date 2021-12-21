@@ -30,6 +30,7 @@
   width: 8vw;
   height: 8vw;
   background-color: green;
+  font-size: 150pc;
 }
 .reject_btn {
   cursor: pointer;
@@ -42,7 +43,8 @@
   width: 8vw;
   height: 8vw;
   background-color: rgb(190, 0, 0);
-  font-size: 20px;
+  /* font-size: 20px; */
+  font-size: 150pc;
 }
 
 @media screen and (min-width: 1050px) {

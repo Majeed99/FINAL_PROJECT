@@ -11,7 +11,12 @@ function Admin() {
 
   useEffect(() => {
     const cookieCheck = document.cookie;
-    if (cookieCheck === "") {
+
+    if (cookieCheck.startsWith("jwt=")) {
+      navigate("/timeline");
+      return;
+    }
+    if (!cookieCheck.startsWith("jwtAdmin=")) {
       navigate("/adminSignIn");
       return;
     }
@@ -22,13 +27,11 @@ function Admin() {
     await axios
       .get("/api/users/")
       .then((res) => {
-        console.log(res.data);
         setUsersData(res.data);
         res.data.forEach((e) => {
           show.push(false);
           setShow([...show]);
         });
-        console.log(show);
       })
       .catch((err) => {
         if (err) console.log(err);
