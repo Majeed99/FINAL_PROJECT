@@ -25,6 +25,13 @@
   height: 100%;
   cursor: pointer;
 }
+.submit_post:focus {
+  transition: 1s;
+  position: relative;
+  bottom: 5px;
+  box-shadow: 0 5px 5px rgb(114, 114, 114);
+  background-color: #115069;
+}
 
 .btn-file {
   position: relative;
