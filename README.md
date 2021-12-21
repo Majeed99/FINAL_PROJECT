@@ -166,22 +166,23 @@ Admin model
 
 ## Backend routes
 
-| HTTP Method | URL                                     | Request Body                              | Success status | Error Status | Description |
-| ----------- | --------------------------------------- | ----------------------------------------- | -------------- | :----------: | ----------- |
-| GET         | `/api/users/`                           |                                           | 200            |     404      |             |
-| GET         | `/api/users/getUser/:id`                |                                           | 200            |     404      |             |
-| POST        | `/api/users/`                           | {name, userName, email, password }        | 200            |     404      |             |
-| POST        | `/api/users/signin`                     | { email, password }                       | 200            |     404      |             |
-| PUT         | `api/users/editProfile/:id`             | {all User Info}                           |                |              |             |
-| GET         | `api/users/signOut`                     |                                           | 200            |     404      |             |
-| DELETE      | `api/users/deleteUser/:id`              |                                           | 200            |     404      |             |
-| GET         | `api/posts/getPosts/:id`                |                                           | 200            |     404      |             |
-| POST        | `api/posts/addPost/:id`                 | { text, location, locationId,photo }      | 200            |     404      |             |
-| DELETE      | `api/posts/deletePost`                  |                                           | 200            |     404      |             |
-| GET         | `api/posts/getTimeLine/:id`             |                                           | 200            |     404      |             |
-| GET         | `api/posts/getPostInfo/:userId/:postId` |                                           | 200            |     404      |             |
-| POST        | `api/posts/addComment`                  | { userId, postId, commentText, senderId } |                |              |             |
-| DELETE      | `api/posts/DeleteComment`               | { userId, postId, commentId }             | 200            |     404      |             |
+| HTTP Method | URL                                     | Request Body                              | Success status | Error Status | Description                                |
+| ----------- | --------------------------------------- | ----------------------------------------- | -------------- | :----------: | ------------------------------------------ |
+| GET         | `/api/users/`                           |                                           | 200            |     404      |                                            |
+| GET         | `/api/users/getUser/:id`                |                                           | 200            |     404      |                                            |
+| POST        | `/api/users/`                           | {name, userName, email, password }        | 200            |     404      |                                            |
+| POST        | `/api/users/signin`                     | { email, password }                       | 200            |     404      |                                            |
+| PUT         | `api/users/editProfile/:id`             | {all User Info}                           |                |              |                                            |
+| GET         | `api/users/signOut`                     |                                           | 200            |     404      |                                            |
+| DELETE      | `api/users/deleteUser/:id`              |                                           | 200            |     404      | delete user for admin                      |
+| DELETE      | `api/users/deleteAccount/:id`           |                                           |                |              | delete account for user with remove cookie |
+| GET         | `api/posts/getPosts/:id`                |                                           | 200            |     404      |                                            |
+| POST        | `api/posts/addPost/:id`                 | { text, location, locationId,photo }      | 200            |     404      |                                            |
+| DELETE      | `api/posts/deletePost`                  |                                           | 200            |     404      |                                            |
+| GET         | `api/posts/getTimeLine/:id`             |                                           | 200            |     404      |                                            |
+| GET         | `api/posts/getPostInfo/:userId/:postId` |                                           | 200            |     404      |                                            |
+| POST        | `api/posts/addComment`                  | { userId, postId, commentText, senderId } |                |              |                                            |
+| DELETE      | `api/posts/DeleteComment`               | { userId, postId, commentId }             | 200            |     404      |                                            |
 
 ## 🔗 Links
 
