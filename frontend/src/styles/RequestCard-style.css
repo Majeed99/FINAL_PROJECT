@@ -27,6 +27,7 @@
   align-items: center;
   margin: 1% 0;
   border: 0;
+  min-width: min-content;
   width: 8vw;
   height: 8vw;
   background-color: green;
@@ -39,6 +40,7 @@
   align-items: center;
   margin: 1% 0 1% 5%;
   border: 0;
+  min-width: min-content;
   width: 8vw;
   height: 8vw;
   background-color: rgb(190, 0, 0);
