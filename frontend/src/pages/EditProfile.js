@@ -32,6 +32,11 @@ function EditProfile() {
     setUserData(data);
     setLoading(false);
   }
+  async function deleteAcc() {
+    axios.delete("/api/users/deleteAccount/" + UserData._id).then((res) => {
+      navigate("/signin");
+    });
+  }
 
   async function checkAndSubmit() {
     await axios
@@ -133,6 +138,18 @@ function EditProfile() {
         <br />
         <button className="edit_profile_button" type="submit">
           Update
+        </button>
+
+        <hr />
+        <p className="warning">IF YOU DELETE YOUR ACCOUNT ALL INFO WILL LOST</p>
+        <button
+          className="delete_acc"
+          onClick={(e) => {
+            e.preventDefault();
+            deleteAcc();
+          }}
+        >
+          Delete Account
         </button>
       </form>
     </div>

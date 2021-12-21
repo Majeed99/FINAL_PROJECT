@@ -153,3 +153,18 @@
     top: 40vh;
   }
 }
+.delete_acc {
+  min-width: max-content;
+  width: 110px;
+  margin-left: auto;
+  background-color: red;
+  padding: 2%;
+  background-image: linear-gradient(45deg, red, rgb(94, 0, 0));
+  color: white;
+  border: 0;
+  border-radius: 500px;
+}
+.warning {
+  color: rgb(128, 128, 128);
+  font-weight: bold;
+}

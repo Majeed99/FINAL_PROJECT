@@ -98,6 +98,13 @@ router.put("/editProfile/:id", async (req, res) => {
   res.end();
 });
 
+router.delete("/deleteAccount/:id", async (req, res) => {
+  const id = req.params.id;
+  let u = await users.findByIdAndDelete(id);
+  res.cookie("jwt", "", { maxAge: 1 });
+  res.end();
+});
+
 // SIGN OUT
 router.get("/signOut", async (req, res) => {
   try {
