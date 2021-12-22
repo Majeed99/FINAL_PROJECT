@@ -59,7 +59,7 @@ router.post("/", async (req, res) => {
   users
     .create({
       name: name,
-      userName: userName,
+      userName: userName.toLowerCase(),
       email: email.toLowerCase(),
       password: passwordHash,
     })
@@ -75,7 +75,11 @@ router.post("/", async (req, res) => {
 router.post("/signIn", async (req, res) => {
   const { email, password } = req.body;
   let u = await users.findOne({ email: email.toLowerCase() }).lean();
-  if (u == null) res.send("invalid email/password");
+  if (u == null) {
+    res.send("invalid email/password");
+    return;
+  }
+
   if (await bcrypt.compare(password, u.password)) {
     let Token = jwt.sign(u._id.toJSON(), JWT_SECRET);
     res.cookie("jwt", Token);

@@ -103,7 +103,6 @@ router.post("/addComment", async (req, res) => {
 
 router.delete("/DeleteComment", async (req, res) => {
   const { userId, postId, commentId } = req.body;
-  console.log({ userId, postId, commentId });
   const u = await users.findById(userId);
   const postInfo = u.posts.find((e) => {
     return e._id.toString() == postId;

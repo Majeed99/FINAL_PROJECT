@@ -42,6 +42,7 @@
 .Check_package {
   display: flex;
   justify-content: space-between;
+  padding-top: 1%;
 }
 .Check_package > p {
   text-align: center;
