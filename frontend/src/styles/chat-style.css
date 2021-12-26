@@ -1,0 +1,100 @@
+.chatInfoHeader {
+  height: 9vh;
+  background-image: linear-gradient(#155e72, #0b3c4a);
+  display: flex;
+  align-items: center;
+  color: white;
+}
+.chatInfoHeader img {
+  margin-left: 5px;
+  width: 8vh;
+  height: 8vh;
+  border-radius: 50%;
+  border: 1px gray solid;
+}
+.userNameChatHeader {
+  margin: 0;
+  padding-left: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.userNameChatHeader p {
+  margin: 0;
+  width: max-content;
+}
+.userNameTitle {
+  font-size: 12px;
+  color: rgb(190, 190, 190);
+}
+
+.messageText {
+  background-color: rgb(75, 121, 148);
+  width: max-content;
+  max-width: 70vw;
+  padding: 5px;
+  box-shadow: 0 0 5px gray;
+  border-radius: 10px 10px 10px 0;
+  color: white;
+  margin: 0;
+}
+
+.TimeMessage {
+  margin: 0;
+  margin-top: 2px;
+  color: gray;
+}
+
+.sendingPart {
+  height: 10vh;
+  position: absolute;
+  bottom: 20px;
+  /* z-index: 900; */
+  /* background-color: rgb(214, 214, 214); */
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 1%;
+}
+.sendingPart form {
+  width: 100%;
+}
+.chatInput {
+  width: 85%;
+  border: 0;
+  border-radius: 500px;
+  background-color: rgb(212, 212, 212);
+  padding: 5px;
+  height: 6vh;
+  outline: none;
+}
+.chatButton {
+  height: 6vh;
+  width: 15%;
+  border: 0;
+  border-radius: 500px;
+  color: white;
+  font-weight: 900px;
+  background-image: linear-gradient(45deg, rgb(0, 114, 167), rgb(10, 52, 65));
+}
+.ChattingPage {
+  padding: 2%;
+  height: 68vh;
+  overflow: auto;
+  /* background-color: rgb(255, 166, 0); */
+}
+
+@media screen and (min-width: 1050px) {
+  .sendingPart {
+    width: 93%;
+    bottom: 0;
+  }
+  .ChattingPage {
+    padding: 2%;
+    height: 81vh;
+    overflow: auto;
+    /* background-color: rgb(255, 166, 0); */
+  }
+}
