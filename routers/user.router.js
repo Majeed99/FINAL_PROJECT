@@ -16,6 +16,17 @@ router.get("/", (req, res) => {
     });
 });
 router.delete("/deleteUser/:id", (req, res) => {
+  users.find().then((res) => {
+    res.forEach((user) => {
+      const fr = user.friends;
+      const frNew = fr.filter((friendId) => {
+        return friendId != req.params.id;
+      });
+      user.friends = frNew;
+      user.save();
+    });
+  });
+
   users
     .findByIdAndDelete(req.params.id)
     .then((data) => {
@@ -102,8 +113,20 @@ router.put("/editProfile/:id", async (req, res) => {
   res.end();
 });
 
+// FOR USERS
 router.delete("/deleteAccount/:id", async (req, res) => {
   const id = req.params.id;
+  users.find().then((res) => {
+    res.forEach((user) => {
+      const fr = user.friends;
+      const frNew = fr.filter((friendId) => {
+        return friendId != req.params.id;
+      });
+      user.friends = frNew;
+      user.save();
+    });
+  });
+
   let u = await users.findByIdAndDelete(id);
   res.cookie("jwt", "", { maxAge: 1 });
   res.end();

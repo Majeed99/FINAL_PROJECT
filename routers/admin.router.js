@@ -34,18 +34,18 @@ router.post("/signin", async (req, res) => {
   }
 });
 
-router.delete("/deleteUser/:id", async (req, res) => {
-  const { email, password } = req.body;
-  const adminUser = await admin.findOne({ email: email });
-  if (adminUser == null) res.send("invalid email/password");
-  else {
-    if (await bcrypt.compare(password, adminUser.password)) {
-      let Token = jwt.sign(adminUser._id.toJSON(), JWT_SECRET);
-      res.cookie("jwtAdmin", Token);
-      res.json(Token);
-    } else res.send("invalid email/password");
-  }
-});
+// router.delete("/deleteUser/:id", async (req, res) => {
+//   const { email, password } = req.body;
+//   const adminUser = await admin.findOne({ email: email });
+//   if (adminUser == null) res.send("invalid email/password");
+//   else {
+//     if (await bcrypt.compare(password, adminUser.password)) {
+//       let Token = jwt.sign(adminUser._id.toJSON(), JWT_SECRET);
+//       res.cookie("jwtAdmin", Token);
+//       res.json(Token);
+//     } else res.send("invalid email/password");
+//   }
+// });
 
 router.get("/signOut", async (req, res) => {
   try {
