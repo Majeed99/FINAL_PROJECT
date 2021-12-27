@@ -19,12 +19,12 @@ import NewPost from "./pages/NewPost";
 import Post from "./pages/Post";
 import Place from "./pages/Place";
 import Chat from "./pages/Chat";
+import Rooms from "./pages/Rooms";
 import AdminSignIn from "./pages/AdminSignIn";
 import Admin from "./pages/Admin";
 import AOS from "aos";
 import { useEffect } from "react";
 import "aos/dist/aos.css";
-
 
 function App() {
   let [auth, setAuth] = useState(false);
@@ -55,6 +55,7 @@ function App() {
               <Route exact path="/Post/:userId/:postId" element={<Post />} />
               <Route exact path="/Place/:id" element={<Place />} />
               <Route exact path="/Chat" element={<Chat />} />
+              <Route exact path="/Rooms" element={<Rooms />} />
               {/*Admin Pages */}
               <Route exact path="/adminSignIn" element={<AdminSignIn />} />
               <Route exact path="/admin" element={<Admin />} />

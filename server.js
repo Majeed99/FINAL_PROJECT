@@ -14,6 +14,7 @@ const usersRouter = require("./routers/user.router");
 const postRouter = require("./routers/post.router");
 const friendsRouter = require("./routers/friends.router");
 const adminsRouter = require("./routers/admin.router");
+const chatRouter = require("./routers/chat.router");
 // CONNECTION TO MONGOOSE DB
 mongoose.connect(
   "mongodb+srv://admin:adminxx@cluster0.9badp.mongodb.net/finalProject?retryWrites=true&w=majority",
@@ -54,6 +55,7 @@ app.use("/api/admins", adminsRouter);
 app.use("/api/users", usersRouter);
 app.use("/api/posts", postRouter);
 app.use("/api/friends", friendsRouter);
+app.use("/api/chats", chatRouter);
 
 app.get("*", (req, res) => {
   res.sendFile(path.resolve(__dirname, "frontend/build/index.html"));

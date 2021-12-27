@@ -9,6 +9,26 @@ router.post("/search", async (req, res) => {
   else res.json(data);
 });
 
+router.post("/searchFromFriends", async (req, res) => {
+  const { userId, value } = req.body;
+  let reg = new RegExp(`^${value}`, "gi");
+
+  let u = await users.findById(userId);
+  let friends = u.friends;
+  let arrFriends = friends.map((fId) => {
+    return users.findById(fId);
+  });
+  Promise.all(arrFriends).then((data) => {
+    let result = data.filter((el) => {
+      if (reg.test(el.userName)) return el;
+    });
+
+    Promise.all(result).then((data) => {
+      res.json(data);
+    });
+  });
+});
+
 router.post("/request", async (req, res) => {
   const { userId, friendId } = req.body;
   const u = await users.findByIdAndUpdate(friendId, {
