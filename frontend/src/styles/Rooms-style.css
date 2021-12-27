@@ -33,6 +33,7 @@
   border: 0;
   border-bottom: 1px gray solid;
   margin-bottom: 5px;
+  cursor: pointer;
   /* border-radius: 5px; */
 }
 .UserChat img {

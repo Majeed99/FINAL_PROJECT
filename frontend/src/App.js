@@ -54,7 +54,7 @@ function App() {
               <Route exact path="/NewPost" element={<NewPost />} />
               <Route exact path="/Post/:userId/:postId" element={<Post />} />
               <Route exact path="/Place/:id" element={<Place />} />
-              <Route exact path="/Chat" element={<Chat />} />
+              <Route exact path="/Chat/:roomId" element={<Chat />} />
               <Route exact path="/Rooms" element={<Rooms />} />
               {/*Admin Pages */}
               <Route exact path="/adminSignIn" element={<AdminSignIn />} />

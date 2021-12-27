@@ -1,15 +1,34 @@
 import "../styles/chat-style.css";
 import calcTime from "../functions/calcTime";
+import Loading from "../components/Loading";
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import io from "socket.io-client";
+import axios from "axios";
 
 const socket = io.connect();
 function Chat() {
   let token, userId;
   const navigate = useNavigate();
+  const [loading, setloading] = useState(true);
   const [textMessage, setTextMessage] = useState("");
   const [messageList, setMessageList] = useState([]);
+  const [data, setData] = useState({});
+  const { roomId } = useParams();
+
+  // useEffect(() => {
+  //   const cookieCheck = document.cookie;
+  //   if (cookieCheck === "") {
+  //     navigate("/signin");
+  //     return;
+  //   }
+  //   token = document.cookie.split("=")[1];
+  //   userId = atob(token.split(".")[1]);
+  //   console.log(userId, roomId);
+  //   axios.get("/api/chats/getChatInfo/" + userId + "/" + roomId).then((res) => {
+  //     console.log(res);
+  //   });
+  // }, []);
 
   useEffect(() => {
     const cookieCheck = document.cookie;
@@ -19,8 +38,14 @@ function Chat() {
     }
     token = document.cookie.split("=")[1];
     userId = atob(token.split(".")[1]);
-    socket.emit("join_room", "testRoom");
+    axios.get(`/api/chats/getChatInfo/${userId}/${roomId}`).then((res) => {
+      console.log(res.data);
+      setData(res.data);
+      socket.emit("join_room", res.data.result.RoomId);
+      setloading(false);
+    });
   }, []);
+
   useEffect(() => {
     socket.on("receive_message", (data) => {
       console.log(data);
@@ -34,7 +59,7 @@ function Chat() {
 
     if (textMessage !== "") {
       const messageData = {
-        room: "testRoom",
+        room: data.result.RoomId,
         author: userId,
         message: textMessage,
         time: new Date(),
@@ -44,17 +69,14 @@ function Chat() {
       setMessageList((list) => [...list, messageData]);
     }
   }
-
+  if (loading) return <Loading />;
   return (
     <div>
       <div className="chatInfoHeader">
-        <img
-          src="http://res.cloudinary.com/location-based-socail/image/upload/v1639725166/DDEE32CD-A69B-4B3E-8B84-8086AD573F97_krjwru.jpg"
-          alt="avatar"
-        />
+        <img src={data.friendInfo.avatar} alt="avatar" />
         <div className="userNameChatHeader">
-          <p> abdulmajeed</p>
-          <p className="userNameTitle"> @Majeedx99</p>
+          <p> {data.friendInfo.name}</p>
+          <p className="userNameTitle"> @{data.friendInfo.userName}</p>
         </div>
       </div>
       <div className="ChattingPage">

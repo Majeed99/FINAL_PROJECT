@@ -8,7 +8,6 @@ router.post("/createRoom/:userId", async (req, res) => {
   const userId = req.params.userId;
   let u = await users.findById(userId);
   let wantedRoom;
-  let Chats = u.chats;
 
   u.chats.forEach((room) => {
     if (_.isEqual(room.usersOfRoom, usersOfRoom)) {
@@ -31,17 +30,45 @@ router.post("/createRoom/:userId", async (req, res) => {
     usersOfRoom.forEach(async (uId) => {
       let user = await users.findById(uId);
       let chats = user.chats;
-      console.log(chats);
       chats.push(wantedRoom);
       user.chats = chats;
       user.save();
     });
     res.json(wantedRoom);
   }
-  //   let reg = new RegExp(`^${userName}`, "gi");
-  //   let data = await users.find({ userName: reg });
-  //   if (data.length == 0) res.send("no users");
-  //   else res.json(data);
+});
+
+router.get("/getChats/:userId", async (req, res) => {
+  const userId = req.params.userId;
+
+  let u = await users.findById(userId);
+  // res.json(u.chats);
+
+  let arr = u.chats.map(async (e) => {
+    let friends = e.usersOfRoom.filter((e) => {
+      return e != userId;
+    });
+
+    let user = await users.findById(friends[0]);
+    return { room: e, user: user };
+  });
+  Promise.all(arr).then((data) => {
+    res.json(data);
+  });
+});
+
+router.get("/getChatInfo/:userId/:roomId", async (req, res) => {
+  const { userId, roomId } = req.params;
+
+  let u = await users.findById(userId);
+  // res.json(u.chats);
+
+  let result = u.chats.find(async (e) => e.roomId === roomId);
+  let arr = result.usersOfRoom.filter((id) => {
+    return userId != id;
+  });
+  let friendInfo = await users.findById(arr[0]);
+  res.json({ friendInfo, result });
 });
 
 module.exports = router;
