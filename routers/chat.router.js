@@ -10,8 +10,11 @@ router.post("/createRoom/:userId", async (req, res) => {
   let wantedRoom;
 
   u.chats.forEach((room) => {
-    if (_.isEqual(room.usersOfRoom, usersOfRoom)) {
-      console.log(room);
+    if (
+      _.isEqual(room.usersOfRoom, usersOfRoom) ||
+      _.isEqual(room.usersOfRoom, usersOfRoom.reverse())
+    ) {
+      // console.log(room);
       wantedRoom = room;
       return;
     }
@@ -63,7 +66,7 @@ router.get("/getChatInfo/:userId/:roomId", async (req, res) => {
   let u = await users.findById(userId);
   // res.json(u.chats);
 
-  let result = u.chats.find(async (e) => e.roomId === roomId);
+  let result = u.chats.find(async (e) => e.RoomId === roomId);
   let arr = result.usersOfRoom.filter((id) => {
     return userId != id;
   });
@@ -71,4 +74,43 @@ router.get("/getChatInfo/:userId/:roomId", async (req, res) => {
   res.json({ friendInfo, result });
 });
 
+router.post("/saveMessagesList/:userId/:roomId", async (req, res) => {
+  const { userId, roomId } = req.params;
+  const { messageList } = req.body;
+
+  let u = await users.findById(userId);
+  let NewChatArray = await u.chats.filter(async (e) => {
+    if (e.RoomId === roomId) {
+      e.messagesList = messageList;
+    }
+    return e;
+  });
+
+  let result = u.chats.find(async (e) => e.RoomId === roomId);
+  let arr = result.usersOfRoom.filter((id) => {
+    return userId != id;
+  });
+  let friendInfo = await users.findById(arr[0]);
+
+  let u2 = await users.findById(friendInfo._id);
+  let NewChatArray2 = await u2.chats.filter(async (e) => {
+    if (e.RoomId === roomId) {
+      e.messagesList = messageList;
+    }
+    return e;
+  });
+
+  Promise.all(NewChatArray).then((data) => {
+    // console.log(data);
+    u.chats = data;
+    u.save();
+  });
+
+  Promise.all(NewChatArray2).then((data) => {
+    // console.log(data);
+    u2.chats = data;
+    u2.save();
+    res.json(data);
+  });
+});
 module.exports = router;

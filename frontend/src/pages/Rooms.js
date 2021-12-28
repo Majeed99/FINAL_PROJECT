@@ -46,7 +46,8 @@ function Rooms() {
 
     const data = { usersOfRoom: [userId, FriendId] };
     axios.post("/api/chats/createRoom/" + userId, data).then((res) => {
-      console.log(res.data);
+      // console.log(res.data.RoomId);
+      navigate("/Chat/" + res.data.RoomId);
     });
   }
 
@@ -121,12 +122,6 @@ function Rooms() {
                 <p className="usernameChat"> {el.user.name}</p>
                 {el.room.messagesList.length !== 0 ? (
                   <p className="lastMessage">
-                    {" "}
-                    {
-                      el.room.messagesList[el.room.messagesList.length - 1]
-                        .author
-                    }
-                    :
                     {
                       el.room.messagesList[el.room.messagesList.length - 1]
                         .message

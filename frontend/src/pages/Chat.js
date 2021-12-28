@@ -5,30 +5,18 @@ import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import io from "socket.io-client";
 import axios from "axios";
+import ScrollToBottom from "react-scroll-to-bottom";
 
 const socket = io.connect();
 function Chat() {
   let token, userId;
   const navigate = useNavigate();
   const [loading, setloading] = useState(true);
+  let [countRender, setCountRender] = useState(0);
   const [textMessage, setTextMessage] = useState("");
   const [messageList, setMessageList] = useState([]);
   const [data, setData] = useState({});
   const { roomId } = useParams();
-
-  // useEffect(() => {
-  //   const cookieCheck = document.cookie;
-  //   if (cookieCheck === "") {
-  //     navigate("/signin");
-  //     return;
-  //   }
-  //   token = document.cookie.split("=")[1];
-  //   userId = atob(token.split(".")[1]);
-  //   console.log(userId, roomId);
-  //   axios.get("/api/chats/getChatInfo/" + userId + "/" + roomId).then((res) => {
-  //     console.log(res);
-  //   });
-  // }, []);
 
   useEffect(() => {
     const cookieCheck = document.cookie;
@@ -41,6 +29,7 @@ function Chat() {
     axios.get(`/api/chats/getChatInfo/${userId}/${roomId}`).then((res) => {
       console.log(res.data);
       setData(res.data);
+      setMessageList(res.data.result.messagesList);
       socket.emit("join_room", res.data.result.RoomId);
       setloading(false);
     });
@@ -64,11 +53,31 @@ function Chat() {
         message: textMessage,
         time: new Date(),
       };
-      await socket.emit("send_message", messageData);
       setTextMessage("");
+      setCountRender(++countRender);
       setMessageList((list) => [...list, messageData]);
+      await socket.emit("send_message", messageData);
+      // ===============
     }
   }
+
+  useEffect(() => {
+    token = document.cookie.split("=")[1];
+    userId = atob(token.split(".")[1]);
+    if (countRender !== 0) {
+      axios
+        .post(
+          "/api/chats/saveMessagesList/" + userId + "/" + data.result.RoomId,
+          {
+            messageList: messageList,
+          }
+        )
+        .then((res) => {
+          console.log(res.data);
+        });
+    }
+  }, [countRender]);
+
   if (loading) return <Loading />;
   return (
     <div>
@@ -79,7 +88,8 @@ function Chat() {
           <p className="userNameTitle"> @{data.friendInfo.userName}</p>
         </div>
       </div>
-      <div className="ChattingPage">
+
+      <ScrollToBottom className="ChattingPage">
         {messageList.map((e) => {
           token = document.cookie.split("=")[1];
           userId = atob(token.split(".")[1]);
@@ -95,7 +105,8 @@ function Chat() {
             </div>
           );
         })}
-      </div>
+      </ScrollToBottom>
+
       <div className="sendingPart">
         <form
           onSubmit={(e) => {

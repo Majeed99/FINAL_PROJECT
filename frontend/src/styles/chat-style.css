@@ -96,7 +96,6 @@
   background-image: linear-gradient(45deg, rgb(0, 114, 167), rgb(10, 52, 65));
 }
 .ChattingPage {
-  padding: 2%;
   height: 68vh;
   overflow: auto;
   /* background-color: rgb(255, 166, 0); */
@@ -108,9 +107,15 @@
     bottom: 0;
   }
   .ChattingPage {
-    padding: 2%;
     height: 81vh;
     overflow: auto;
     /* background-color: rgb(255, 166, 0); */
   }
+}
+
+.react-scroll-to-bottom--css-rqhrd-1n7m0yu {
+  height: 100%;
+  overflow-y: auto;
+  width: 100%;
+  padding: 1%;
 }
