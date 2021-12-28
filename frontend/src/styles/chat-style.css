@@ -39,6 +39,7 @@
   border-radius: 10px 10px 10px 0;
   color: white;
   margin: 0;
+  overflow-wrap: break-word;
 }
 
 .TimeMessage {
@@ -52,7 +53,7 @@
   color: gray;
   width: max-content;
   margin-left: auto !important;
-  overflow-wrap: break-word;
+  
 }
 
 .messageText__receive {
