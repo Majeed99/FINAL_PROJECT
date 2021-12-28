@@ -89,7 +89,7 @@ function Chat() {
         </div>
       </div>
 
-      <ScrollToBottom className="ChattingPage">
+      <ScrollToBottom className="ChattingPage padding-1">
         {messageList.map((e) => {
           token = document.cookie.split("=")[1];
           userId = atob(token.split(".")[1]);
