@@ -66,12 +66,15 @@ router.get("/getChatInfo/:userId/:roomId", async (req, res) => {
   let u = await users.findById(userId);
   // res.json(u.chats);
 
-  let result = u.chats.find(async (e) => e.RoomId === roomId);
-  let arr = result.usersOfRoom.filter((id) => {
+  let result = u.chats.filter((e) => {
+    return e.RoomId === roomId;
+  });
+
+  let arr = result[0].usersOfRoom.filter((id) => {
     return userId != id;
   });
   let friendInfo = await users.findById(arr[0]);
-  res.json({ friendInfo, result });
+  res.json({ friendInfo, result: result[0] });
 });
 
 router.post("/saveMessagesList/:userId/:roomId", async (req, res) => {
@@ -86,10 +89,13 @@ router.post("/saveMessagesList/:userId/:roomId", async (req, res) => {
     return e;
   });
 
-  let result = u.chats.find(async (e) => e.RoomId === roomId);
-  let arr = result.usersOfRoom.filter((id) => {
+  let result = u.chats.filter((e) => {
+    return e.RoomId === roomId;
+  });
+  let arr = result[0].usersOfRoom.filter((id) => {
     return userId != id;
   });
+
   let friendInfo = await users.findById(arr[0]);
 
   let u2 = await users.findById(friendInfo._id);
