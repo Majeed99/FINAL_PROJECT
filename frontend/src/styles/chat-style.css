@@ -52,6 +52,7 @@
   color: gray;
   width: max-content;
   margin-left: auto !important;
+  line-break: anywhere;
 }
 
 .messageText__receive {
@@ -64,6 +65,7 @@
   border-radius: 10px 10px 0px 10px;
   color: white;
   margin: 0;
+  line-break: anywhere;
 }
 .sendingPart {
   height: 10vh;
