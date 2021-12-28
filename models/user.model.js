@@ -1,4 +1,5 @@
 const postSchema = require("./post.model");
+const chatSchema = require("./chat.model");
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const userSchema = new Schema(
@@ -22,6 +23,7 @@ const userSchema = new Schema(
     requests: { type: Array, default: [] },
     friends: { type: Array, default: [] },
     posts: { type: [postSchema], default: [] },
+    chats: { type: [chatSchema], default: [] },
   },
   {
     timestamps: true,

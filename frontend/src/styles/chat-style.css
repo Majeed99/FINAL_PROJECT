@@ -46,13 +46,29 @@
   margin-top: 2px;
   color: gray;
 }
+.TimeMessage__receive {
+  margin: 0;
+  margin-top: 2px;
+  color: gray;
+  width: max-content;
+  margin-left: auto !important;
+}
 
+.messageText__receive {
+  background-color: rgb(75, 148, 91);
+  margin-left: auto !important;
+  width: max-content;
+  max-width: 70vw;
+  padding: 5px;
+  box-shadow: 0 0 5px gray;
+  border-radius: 10px 10px 0px 10px;
+  color: white;
+  margin: 0;
+}
 .sendingPart {
   height: 10vh;
   position: absolute;
   bottom: 20px;
-  /* z-index: 900; */
-  /* background-color: rgb(214, 214, 214); */
   display: flex;
   align-items: center;
   width: 100%;
@@ -80,7 +96,6 @@
   background-image: linear-gradient(45deg, rgb(0, 114, 167), rgb(10, 52, 65));
 }
 .ChattingPage {
-  padding: 2%;
   height: 68vh;
   overflow: auto;
   /* background-color: rgb(255, 166, 0); */
@@ -92,9 +107,15 @@
     bottom: 0;
   }
   .ChattingPage {
-    padding: 2%;
     height: 81vh;
     overflow: auto;
     /* background-color: rgb(255, 166, 0); */
   }
+}
+
+.react-scroll-to-bottom--css-rqhrd-1n7m0yu {
+  height: 100%;
+  overflow-y: auto;
+  width: 100%;
+  padding: 1%;
 }
