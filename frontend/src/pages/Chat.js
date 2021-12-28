@@ -27,7 +27,7 @@ function Chat() {
     token = document.cookie.split("=")[1];
     userId = atob(token.split(".")[1]);
     axios.get(`/api/chats/getChatInfo/${userId}/${roomId}`).then((res) => {
-      console.log(res.data);
+      // console.log(res.data);
       setData(res.data);
       setMessageList(res.data.result.messagesList);
       socket.emit("join_room", res.data.result.RoomId);

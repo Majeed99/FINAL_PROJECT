@@ -19,7 +19,7 @@ function Rooms() {
     axios
       .get("/api/chats/getChats/" + userId)
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         setRooms(res.data);
         setloadingForPage(false);
       })
