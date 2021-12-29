@@ -2,7 +2,9 @@ const router = require("express").Router();
 let users = require("../models/user.model");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
-const JWT_SECRET = "KDSL546H5sdfH54656G%#%$rR54756TE$%#%4%^$$235G4FDG6854";
+const dotenv = require("dotenv");
+dotenv.config();
+JWT_SECRET = process.env.JWT_SECRET;
 
 // GET All USER DATA
 router.get("/", (req, res) => {

@@ -4,10 +4,12 @@ const mongoose = require("mongoose");
 const app = express();
 const port = process.env.PORT || 3001;
 const path = require("path");
+const dotenv = require("dotenv");
 const http = require("http");
 const { Server } = require("socket.io");
 app.use(cors());
 app.use(express.json());
+dotenv.config();
 
 // ROUTER REQUIRE
 const usersRouter = require("./routers/user.router");
@@ -15,33 +17,31 @@ const postRouter = require("./routers/post.router");
 const friendsRouter = require("./routers/friends.router");
 const adminsRouter = require("./routers/admin.router");
 const chatRouter = require("./routers/chat.router");
+
 // CONNECTION TO MONGOOSE DB
-mongoose.connect(
-  "mongodb+srv://admin:adminxx@cluster0.9badp.mongodb.net/finalProject?retryWrites=true&w=majority",
-  {}
-);
+mongoose.connect(process.env.DB_URL, {});
 const connection = mongoose.connection;
 connection.once("open", () => {
   console.log("MongoDB database connection established successfully");
 });
 
+// SOCKET.IO
 const server = http.createServer(app);
 const io = new Server(server, {});
-
 io.on("connection", (socket) => {
-  // console.log("User Connected: ", socket.id);
-
+  // LISTING FOR ANY USER TO JOIN ROOM
   socket.on("join_room", (data) => {
     socket.join(data);
-    console.log("User with ID: ", socket.id, " Room ID:", data);
+    // console.log("User with ID: ", socket.id, " Room ID:", data);
   });
 
+  // LISTING FOR ANY USER TO SEND MESSAGE
   socket.on("send_message", (data) => {
     socket.join(data);
     socket.to(data.room).emit("receive_message", data);
-    // console.log(data);
   });
 
+  // LISTING FOR ANY USER DISCONNECT
   socket.on("disconnect", () => {
     // console.log("USER disconnected", socket.id);
   });
@@ -58,6 +58,6 @@ app.use("/api/chats", chatRouter);
 app.get("*", (req, res) => {
   res.sendFile(path.resolve(__dirname, "frontend/build/index.html"));
 });
-// app.listen(port);
 
+// app.listen(port);
 server.listen(port);
